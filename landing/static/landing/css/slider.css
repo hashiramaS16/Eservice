@@ -1,0 +1,51 @@
+/* Contenedor principal del slider */
+.escoge-tu-servicio-parent {
+  position: relative;
+  overflow: hidden;
+  width: 100%; /* Ajusta el tamaño según sea necesario */
+}
+
+/* Contenedor que envolverá las tarjetas */
+.servicios-slider {
+  display: flex;
+  transition: transform 4s ease-in-out;
+         /* Desplazamiento suave */
+}
+
+/* Estilos para cada tarjeta */
+.rectangle-parent, .vector-parent, .vector-group {
+  flex-shrink: 0;
+  width: 100%; /* Ajusta según el número de tarjetas visibles */
+  margin-right: 10px; /* Espaciado entre tarjetas */
+  text-align: center;
+}
+
+/* Estilos adicionales para las tarjetas (ya están en tu HTML) */
+.seleccionar-wrapper {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.seleccionar {
+  font-size: 18px;
+}
+
+.btn-primary-sm-active1 {
+  background-color: #ff984d;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+img.d90682abf9cca3cd309b465f1542c4-icon,
+.image-icon,
+.image-icon1 {
+  border-radius: 8px;
+}
+
+/* Estilo para las imágenes del slider */
+img.rectangle-icon {
+  max-width: 100%;
+  height: auto;
+}

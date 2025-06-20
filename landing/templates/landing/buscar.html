@@ -1,0 +1,378 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block head %}
+
+
+  <style>
+body {
+  margin: 0;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  position: relative;
+  min-height: 100vh;
+
+  background: url("{% static 'landing/assets/12_Mesa de trabajo 1 1 (1).png' %}") no-repeat center center;
+  background-size: cover;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6); /* Blanco semitransparente encima de la imagen */
+  z-index: -1;
+}
+
+.overlay-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+    .servicios-section {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 10px;
+    }
+
+    .servicios-section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      color: #064663;
+    }
+
+    .tarjetas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tarjeta-servicio {
+      background-color: #ffffffcc;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .tarjeta-servicio:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      background-color: #e0f7fa;
+    }
+
+    .tarjeta-servicio h3 {
+      margin: 0 0 10px 0;
+      color: #064663;
+      font-size: 1.4rem;
+    }
+
+    .tarjeta-servicio p {
+      margin: 6px 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      color: #222;
+    }
+
+    .tarjeta-servicio a:first-child {
+      text-decoration: none;
+      color: inherit;
+      flex-grow: 1;
+    }
+
+    .tarjeta-servicio a:first-child:hover h3 {
+      text-decoration: underline;
+      color: #0288d1;
+    }
+
+    .form-busqueda {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .input-busqueda {
+      padding: 10px 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      width: 100%;
+      max-width: 400px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .navbar {
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Logo */
+.navbar-logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #2c3e50;
+  text-decoration: none;
+}
+
+/* Navegación principal */
+.navnav-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #0077cc;
+}
+
+/* Botones de sesión */
+.session-buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn {
+  padding: 8px 14px;
+  border-radius: 5px;
+  background-color: #0077cc;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #005fa3;
+}
+
+.btn-logout {
+  background-color: #d9534f;
+}
+
+.btn-logout:hover {
+  background-color: #c9302c;
+}
+
+.welcome-msg {
+  font-weight: 500;
+  color: #444;
+}
+
+/* Hamburguesa */
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links,
+  .session-buttons {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .nav-links.active,
+  .session-buttons.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+.login-button .btn-ingreso {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.hamburger {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+    .input-busqueda:focus {
+      outline: none;
+      box-shadow: 0 0 6px rgba(0, 132, 255, 0.5);
+      border-color: #0288d1;
+    }
+
+    .btn-busqueda {
+      background-color: #0288d1;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-busqueda:hover {
+      background-color: #026fa4;
+    }
+
+    .btn-detalle {
+      margin-top: 15px;
+      display: inline-block;
+      background-color: #0288d1;
+      color: white;
+      padding: 10px 14px;
+      text-align: center;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-detalle:hover {
+      background-color: #026fa4;
+    }
+
+    .tarjeta-servicio small {
+      color: #666;
+      font-size: 0.85rem;
+      margin-top: 12px;
+      display: block;
+    }
+
+    @media (max-width: 480px) {
+      .tarjetas-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12 mb-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <form method="get" class="mb-0">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Buscar servicios..." value="{{ query }}">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-search"></i> Buscar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        {% if servicios %}
+            {% for servicio in servicios %}
+                {% if not servicio.colaborador_asignado %}
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card h-100 shadow">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ servicio.titulo }}</h5>
+                                <p class="card-text">{{ servicio.descripcion|truncatewords:30 }}</p>
+                                
+                                <div class="mb-3">
+                                    <small class="text-muted">
+                                        <i class="fas fa-calendar"></i> {{ servicio.fecha_servicio|date:"d/m/Y" }}<br>
+                                        <i class="fas fa-map-marker-alt"></i> {{ servicio.ubicacion }}<br>
+                                        <i class="fas fa-tag"></i> {{ servicio.categoria }}<br>
+                                        <i class="fas fa-money-bill-wave"></i> {{ servicio.get_tipo_pago_display }}: ${{ servicio.valor }}
+                                    </small>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="badge {% if servicio.estado == 'completado' %}bg-success{% elif servicio.estado == 'en_progreso' %}bg-warning{% else %}bg-info{% endif %}">
+                                        {{ servicio.get_estado_display }}
+                                    </span>
+                                    <a href="{% url 'detalle_servicio' servicio.id %}" class="btn btn-primary btn-sm">
+                                        Ver Detalles
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <div class="alert alert-info">
+                    No se encontraron servicios disponibles.
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

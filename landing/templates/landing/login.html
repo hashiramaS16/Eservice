@@ -1,0 +1,26 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+{% block title %}Ingreso | E-Service{% endblock %}
+
+{% block content %}
+<div class="login-section">
+  <div class="login-box">
+    <h2>Ingreso a E-Services</h2>
+
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Usuario" required />
+      <input type="password" name="password" placeholder="Contraseña" required />
+      <button type="submit">Ingresar</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

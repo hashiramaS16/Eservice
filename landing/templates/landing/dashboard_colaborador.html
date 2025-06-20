@@ -1,0 +1,141 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12 mb-4 d-flex justify-content-end">
+            <a href="{% url 'historial_colaborador' %}" class="btn btn-outline-primary">
+                <i class="fas fa-history"></i> Ver historial de servicios
+            </a>
+        </div>
+        <!-- Sección de Calificaciones -->
+        <div class="col-md-12 mb-4">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Mis Calificaciones</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <h2 class="display-4">{{ promedio|floatformat:1 }}</h2>
+                        <div class="text-warning">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= promedio %}
+                                    <i class="fas fa-star"></i>
+                                {% else %}
+                                    <i class="far fa-star"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <p class="text-muted">Promedio de calificaciones</p>
+                    </div>
+
+                    {% if calificaciones %}
+                        <div class="list-group">
+                            {% for calificacion in calificaciones %}
+                                <div class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="mb-1">{{ calificacion.servicio.titulo }}</h6>
+                                        <span class="badge bg-warning text-dark">
+                                            {{ calificacion.puntuacion }} <i class="fas fa-star"></i>
+                                        </span>
+                                    </div>
+                                    <p class="mb-1">{{ calificacion.comentario|default:"Sin comentarios" }}</p>
+                                    <small class="text-muted">
+                                        Calificado por: {{ calificacion.empresa.get_full_name }} |
+                                        Fecha: {{ calificacion.fecha|date:"d/m/Y" }}
+                                    </small>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted text-center">No has recibido calificaciones aún.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Servicios Asignados -->
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Mis Servicios Asignados</h5>
+                </div>
+                <div class="card-body">
+                    {% if servicios_asignados %}
+                        <div class="list-group">
+                            {% for servicio in servicios_asignados %}
+                                <div class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="mb-0">{{ servicio.titulo }}</h5>
+                                        <span class="badge {% if servicio.estado == 'completado' %}bg-success{% elif servicio.estado == 'en_progreso' %}bg-warning{% else %}bg-info{% endif %}">
+                                            {{ servicio.get_estado_display }}
+                                        </span>
+                                    </div>
+                                    
+                                    <p class="mb-2">{{ servicio.descripcion }}</p>
+                                    
+                                    <div class="mb-2">
+                                        <small class="text-muted">
+                                            <i class="fas fa-calendar"></i> Fecha: {{ servicio.fecha_servicio|date:"d/m/Y" }} |
+                                            <i class="fas fa-map-marker-alt"></i> Ubicación: {{ servicio.ubicacion }} |
+                                            <i class="fas fa-building"></i> Empresa: {{ servicio.publicado_por.get_full_name }}
+                                        </small>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end">
+                                        {% if servicio.colaborador_asignado %}
+                                            <a href="{% url 'chat_servicio' servicio.id %}" class="btn btn-outline-primary btn-sm">
+                                                <i class="fas fa-comments"></i> Chat
+                                            </a>
+                                        {% endif %}
+                                        {% if servicio.estado == 'en_progreso' %}
+                                            <a href="{% url 'marcar_completado' servicio.id %}" class="btn btn-success">
+                                                <i class="fas fa-check"></i> Marcar como Completado
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted text-center">No tienes servicios asignados.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.progress {
+    height: 25px;
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+.progress-bar {
+    line-height: 25px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+.card-header {
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.list-group-item {
+    border: 1px solid rgba(0,0,0,.125);
+    margin-bottom: 5px;
+    border-radius: 5px !important;
+}
+</style>
+{% endblock %} 

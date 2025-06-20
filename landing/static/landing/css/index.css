@@ -1,0 +1,894 @@
+.professional-cleaning-service-icon {
+    width: 100%;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    height: 1281px;
+    object-fit: cover;
+    display: none;
+    }
+  
+    .child {
+          position: absolute;
+          top: -23px;
+          left: 0px;
+          background-color: rgba(0, 0, 0, 0.25);
+          width: 1947px;
+          height: 1306px;
+          display: none;
+    }
+    .mesa-de-trabajo-1-1 {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 1921px;
+          height: 1334px;
+          object-fit: cover;
+    }
+    .item {
+          position: absolute;
+          top: 84px;
+          left: -1px;
+          background-color: rgba(25, 25, 99, 0.5);
+          width: 1922px;
+          height: 1250px;
+    }
+    .resolvemos {
+          margin: 0;
+    }
+    .ti {
+          color: #ff984d;
+    }
+    .resolvemos-por-ti-container {
+          position: absolute;
+          top: calc(50% - 1836.5px);
+          left: calc(50% - 787px);
+          font-size: 100px;
+          line-height: 90%;
+          font-weight: 900;
+    }
+    .png-1-icon {
+          position: absolute;
+          top: -54px;
+          left: -81px;
+          width: 2082px;
+          height: 1443px;
+          object-fit: cover;
+    }
+    .blur-mesa-de-trabajo-1-1 {
+          position: absolute;
+          top: 0px;
+          left: calc(50% - 961px);
+          width: 1921px;
+          height: 1334px;
+          object-fit: cover;
+    }
+    .resolver {
+          position: absolute;
+          top: 14px;
+          left: 42px;
+    }
+    .frame-child {
+          position: absolute;
+          top: 16.25px;
+          left: 180px;
+          width: 9px;
+          height: 17.5px;
+    }
+    .resolver-parent {
+          position: absolute;
+          top: 837px;
+          left: calc(50% - 769px);
+          background-color: #fff;
+          width: 203px;
+          height: 50px;
+          overflow: hidden;
+          text-align: center;
+          color: #191963;
+    }
+    .frame-item {
+          position: absolute;
+          top: -24px;
+          left: 0px;
+          background-color: rgba(25, 25, 99, 0.5);
+          width: 1922px;
+          height: 124px;
+    }
+    .e-services {
+          position: absolute;
+          top: calc(50% - 18px);
+          left: 185px;
+          font-size: 32px;
+          display: inline-block;
+          width: 159px;
+          height: 34px;
+    }
+    .ssdev-code {
+          position: absolute;
+          top: calc(50% - 31px);
+          left: 56px;
+          font-size: 14px;
+          display: inline-block;
+          text-align: center;
+          width: 65px;
+          height: 12px;
+          transform:  rotate(90deg);
+          transform-origin: 0 0;
+    }
+    .inicio {
+          position: absolute;
+          top: calc(50% - 3px);
+          left: calc(50% - 15px);
+          display: flex;
+          align-items: center;
+          width: 64px;
+          height: 10px;
+    }
+    .sobre-nosotros {
+          position: absolute;
+          top: calc(50% - 3px);
+          left: 1113px;
+          display: flex;
+          align-items: center;
+          width: 120px;
+          height: 10px;
+    }
+    /* Contenedor principal del slider */
+    .escoge-tu-servicio-parent {
+      position: relative;
+      overflow: hidden;
+      width: 100%; /* Ajusta el tamaño según sea necesario */
+    }
+  
+  /* Contenedor que envolverá las tarjetas */
+  .servicios-slider {
+      display: flex;
+      transition: transform 4s ease-in-out;
+             /* Desplazamiento suave */
+   }
+
+  
+  /* Estilos para cada tarjeta */
+  .rectangle-parent, .vector-parent, .vector-group {
+      flex-shrink: 0;
+      width: 100%; /* Ajusta según el número de tarjetas visibles */
+      margin-right: 10px; /* Espaciado entre tarjetas */
+      text-align: center;
+  }
+  
+  /* Estilos adicionales para las tarjetas (ya están en tu HTML) */
+  .seleccionar-wrapper {
+      cursor: pointer;
+      font-weight: bold;
+  }
+  
+  .seleccionar {
+      font-size: 18px;
+  }
+  
+  .btn-primary-sm-active1 {
+      background-color: #ff984d;
+      color: white;
+      padding: 10px;
+      border-radius: 6px;
+      text-align: center;
+  }
+  
+  img.d90682abf9cca3cd309b465f1542c4-icon,
+  .image-icon,
+  .image-icon1 {
+    
+      border-radius: 8px;
+  }
+  
+  /* Estilo para las imágenes del slider */
+  img.rectangle-icon {
+      max-width: 100%;
+      height: auto;
+  }
+  
+    .contactanos {
+          position: absolute;
+          top: calc(50% - 6px);
+          left: 1511px;
+          display: flex;
+          align-items: center;
+          width: 102px;
+          height: 13px;
+    }
+    .ingreso {
+          position: absolute;
+          top: 9px;
+          left: 43px;
+    }
+    .btn-primary-sm-active {
+          position: absolute;
+          top: 26px;
+          left: calc(50% + 746px);
+          border: 1px solid #fff;
+          box-sizing: border-box;
+          width: 132px;
+          height: 32px;
+          overflow: hidden;
+          text-align: center;
+          font-size: 14px;
+    }
+    .mesa-de-trabajo-1-1-parent {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 1920px;
+          height: 84px;
+          overflow: hidden;
+          font-family: 'Josefin Sans';
+    }
+    .ya-no-pierdas-container1 {
+          width: 100%;
+    }
+    .ya-no-pierdas-container {
+          position: absolute;
+          top: calc(50% - 1412.5px);
+          left: calc(50% - 767px);
+          font-size: 24px;
+          letter-spacing: 0.02em;
+          line-height: 151%;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          width: 804px;
+    }
+    .degradado-services-mesa-de-tra {
+          position: absolute;
+          top: calc(50% - 691.5px);
+          left: calc(50% - 960px);
+          width: 1921px;
+          height: 1174px;
+          object-fit: cover;
+    }
+ 
+    .en-e-services-ponemos {
+          position: absolute;
+          top: calc(50% - 459px);
+          left: calc(50% - 761.5px);
+          font-size: 16px;
+          letter-spacing: 0.02em;
+          line-height: 151%;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          width: 1527px;
+    }
+    .servicios2 {
+          color: #fff;
+    }
+    .servicios1 {
+          position: absolute;
+          top: calc(50% - 560px);
+          left: calc(50% + 636.5px);
+          font-size: 20px;
+          line-height: 151%;
+          font-weight: 600;
+          display: none;
+          color: #ff984d;
+    }
+    .frame-inner {
+          position: absolute;
+          top: 75px;
+          left: 1430px;
+          background-color: #fff;
+          width: 164px;
+          height: 3px;
+          display: none;
+    }
+    .rectangle-div {
+          position: absolute;
+          top: 130px;
+          left: 61px;
+          background-color: #fff;
+          width: 1530px;
+          height: 2px;
+    }
+    .frame-child1 {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          background-color: #4e4bbf;
+          width: 415px;
+          height: 659px;
+    }
+    .seleccionar {
+          position: absolute;
+          top: 14px;
+          left: 24px;
+    }
+    .seleccionar-wrapper {
+          position: absolute;
+          top: 555px;
+          left: calc(50% - 105.5px);
+          background-color: #ff984d;
+          width: 211px;
+          height: 50px;
+          overflow: hidden;
+          font-family: 'Josefin Sans';
+    }
+    .jardineria {
+          position: absolute;
+          top: calc(50% + 63px);
+          left: calc(50% - 91.5px);
+          font-size: 20px;
+          line-height: 96%;
+          font-weight: 800;
+          text-align: left;
+    }
+    .cuida-y-embellece {
+          position: absolute;
+          top: calc(50% + 121px);
+          left: calc(50% - 151.5px);
+          font-size: 17px;
+          letter-spacing: 0.02em;
+          line-height: 118%;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 302px;
+        color: #fff;
+    }
+    .d90682abf9cca3cd309b465f1542c4-icon {
+          position: absolute;
+          top: 0px;
+          left: calc(50% - 281.5px);
+          width: 514px;
+          height: 333px;
+          object-fit: cover;
+    }
+    .rectangle-parent {
+          position: absolute;
+          top: 274px;
+          left: 110px;
+          box-shadow: 25px 26px 23px -4px rgba(0, 0, 0, 0.25);
+          background-color: #ff984d;
+          width: 415px;
+          height: 666px;
+          overflow: hidden;
+          text-align: center;
+          font-size: 22px;
+    }
+    .frame-icon {
+          position: absolute;
+          top: 792px;
+          left: 1626px;
+          width: 25px;
+          height: 31px;
+          overflow: hidden;
+    }
+    .rectangle-icon {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 360px;
+          height: 572px;
+    }
+    .image-icon {
+          position: absolute;
+          top: 0px;
+          right: -13px;
+          width: 449px;
+          height: 291px;
+          object-fit: cover;
+    }
+    .limpieza {
+          position: absolute;
+          top: calc(50% + 50px);
+          left: calc(50% - 82px);
+          line-height: 96%;
+          font-weight: 800;
+    }
+    .disfruta-de-un {
+          position: absolute;
+          top: calc(50% + 108px);
+          left: calc(50% - 151px);
+          font-size: 17px;
+          letter-spacing: 0.02em;
+          line-height: 118%;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 302px;
+        color: #fff;
+    }
+    .seleccionar1 {
+          position: relative;
+    }
+    .btn-primary-sm-active1 {
+          position: absolute;
+          top: 507px;
+          left: calc(50% - 66px);
+          background-color: #ff984d;
+          overflow: hidden;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          padding: 9px 14px;
+          font-size: 14px;
+          font-family: 'Josefin Sans';
+    }
+    .vector-parent {
+          position: absolute;
+          top: 331px;
+          left: 680px;
+          background-color: #fff;
+          width: 360px;
+          height: 578px;
+          overflow: hidden;
+          text-align: center;
+    }
+    .image-icon1 {
+          position: absolute;
+          top: 0px;
+          right: -55px;
+          width: 449px;
+          height: 291px;
+          object-fit: cover;
+    }
+    .vector-group {
+          position: absolute;
+          top: 331px;
+          left: 1153px;
+          background-color: #fff;
+          width: 360px;
+          height: 578px;
+          overflow: hidden;
+          text-align: center;
+    }
+    .frame-child3 {
+          position: absolute;
+          top: 791px;
+          left: 0px;
+          width: 25px;
+          height: 31px;
+          overflow: hidden;
+    }
+    .escoge-tu-servicio-parent {
+          position: absolute;
+          top: 1195px;
+          left: calc(50% - 836px);
+          width: 1500px;
+          height: 1000px;
+          overflow: hidden;
+          font-size: 34px;
+        color:#fff
+    }
+    .ssdev-code1 {
+          position: absolute;
+          top: calc(50% - 662.5px);
+          left: 90px;
+          font-size: 14px;
+          display: inline-block;
+          font-family: 'Josefin Sans';
+          text-align: center;
+          width: 65px;
+          height: 12px;
+          transform:  rotate(90deg);
+          transform-origin: 0 0;
+    }
+    .inner {
+          position: absolute;
+          top: 3221px;
+          left: 0px;
+          width: 1920px;
+          height: 812px;
+    }
+    .degradado-services-mesa-de-tra1 {
+          position: absolute;
+          bottom: 0px;
+          left: calc(50% - 961px);
+          width: 1921px;
+          height: 1341px;
+          object-fit: cover;
+    }
+    .e-services1 {
+          font-family: 'Josefin Sans';
+          color: #ff984d;
+    }
+    .nete-a-e-services {
+          position: absolute;
+          top: calc(50% - 414px);
+          left: calc(50% - 238px);
+          font-size: 52px;
+          line-height: 96%;
+          color: #fff;
+    }
+    .frame-child4 {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 546px;
+          height: 195px;
+          overflow: hidden;
+          object-fit: cover;
+    }
+    .registra-tu-empresa {
+          position: absolute;
+          top: calc(50% + 17.5px);
+          left: calc(50% - 181px);
+          line-height: 96%;
+    }
+    .conctate-con-nuevos {
+          position: absolute;
+          top: calc(50% + 65.5px);
+          left: calc(50% - 246px);
+          font-size: 17px;
+          letter-spacing: 0.02em;
+          line-height: 118%;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 491px;
+    }
+    .nete-ahora {
+          position: absolute;
+          top: 14px;
+          left: 39px;
+    }
+    .nete-ahora-wrapper {
+          position: absolute;
+          top: 350px;
+          left: calc(50% - 105px);
+          border: 2px solid #191963;
+          box-sizing: border-box;
+          width: 210px;
+          height: 50px;
+          overflow: hidden;
+          font-size: 22px;
+          font-family: 'Josefin Sans';
+    }
+    .frame-parent {
+          position: absolute;
+          top: 284px;
+          left: 61px;
+          background-color: #fff;
+          border-bottom: 8px solid #ff984d;
+          box-sizing: border-box;
+          width: 546px;
+          height: 449px;
+          overflow: hidden;
+    }
+    .convirtete-en-e-xclusivo {
+          position: absolute;
+          top: calc(50% + 17.5px);
+          left: calc(50% - 226px);
+          line-height: 96%;
+    }
+    .frame-group {
+          position: absolute;
+          top: 284px;
+          left: calc(50% - 274px);
+          background-color: #fff;
+          border-bottom: 8px solid #ff984d;
+          box-sizing: border-box;
+          width: 546px;
+          height: 449px;
+          overflow: hidden;
+    }
+    .nete-como-e-xpert {
+          position: absolute;
+          top: calc(50% + 17.5px);
+          left: calc(50% - 179px);
+          line-height: 96%;
+    }
+    .frame-container {
+          position: absolute;
+          top: 284px;
+          left: calc(50% + 352px);
+          background-color: #fff;
+          border-bottom: 8px solid #ff984d;
+          box-sizing: border-box;
+          width: 546px;
+          height: 449px;
+          overflow: hidden;
+    }
+    .degradado-services-mesa-de-tra-parent {
+          position: absolute;
+          top: 2382px;
+          left: 0px;
+          background-color: #191963;
+          width: 1920px;
+          height: 1112px;
+          overflow: hidden;
+          text-align: center;
+          font-size: 34px;
+          color: #191963;
+    }
+    .e-services2 {
+          position: absolute;
+          top: calc(50% - 328px);
+          left: 104px;
+          font-size: 96px;
+          color: #ff984d;
+    }
+    .mail-icon {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 37px;
+          height: 37px;
+          overflow: hidden;
+    }
+    .contactoseservicescom {
+          position: absolute;
+          top: 4px;
+          left: 59px;
+          line-height: 120%;
+          font-weight: 500;
+        color: #fff;
+    }
+    .mail-parent {
+          position: absolute;
+          top: 0px;
+          left: 895px;
+          width: 376px;
+          height: 37px;
+    }
+    .location-marker-parent {
+          position: absolute;
+          top: 0px;
+          left: 294px;
+          width: 523px;
+          height: 37px;
+    }
+    .phone-parent {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 216px;
+          height: 37px;
+    }
+    .group-parent {
+          position: absolute;
+          top: 365px;
+          left: 324px;
+          width: 1271px;
+          height: 37px;
+          font-family: Montserrat;
+        color: #fff;
+    }
+    .ssdev-code-e-services {
+          position: absolute;
+          top: 464px;
+          left: calc(50% - 143px);
+          line-height: 120%;
+          font-weight: 300;
+          font-family: Montserrat;
+        color: #fff;
+    }
+    .frame-child7 {
+          position: absolute;
+          top: 239px;
+          left: 1798px;
+          width: 65px;
+          height: 65px;
+          overflow: hidden;
+        color: #fff;
+    }
+    .frame-child8 {
+          position: absolute;
+          top: 176px;
+          left: 1798px;
+          width: 65px;
+          height: 65px;
+          overflow: hidden;
+    }
+    .bg {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          top: 0%;
+          right: 0%;
+          bottom: 0%;
+          left: 0%;
+          background-color: #191963;
+    }
+    .vector-icon {
+          position: absolute;
+          height: 50%;
+          width: 50%;
+          top: 25%;
+          right: 25%;
+          bottom: 25%;
+          left: 25%;
+          max-width: 100%;
+          overflow: hidden;
+          max-height: 100%;
+    }
+    .x {
+          position: absolute;
+          top: 113px;
+          left: 1798px;
+          width: 65px;
+          height: 65px;
+    }
+    .frame-child9 {
+          position: absolute;
+          top: 50px;
+          left: 1798px;
+          width: 65px;
+          height: 65px;
+          overflow: hidden;
+        color: #fff;
+    }
+    .inicio1 {
+          position: absolute;
+          top: calc(50% - 18px);
+          left: calc(50% - 442px);
+          display: flex;
+          align-items: center;
+          width: 89px;
+          height: 38px;
+        color: #fff;
+    }
+    .sobre-nosotros1 {
+          position: absolute;
+          top: calc(50% - 18px);
+          left: 150px;
+          display: flex;
+          align-items: center;
+          width: 251px;
+          height: 38px;
+        color: #fff;
+    }
+    .servicios3 {
+          position: absolute;
+          top: calc(50% - 18px);
+          left: 462px;
+          display: flex;
+          align-items: center;
+          width: 147px;
+          height: 38px;
+        color: #fff;
+    }
+    .contactanos1 {
+          position: absolute;
+          top: calc(50% - 20px);
+          left: 670px;
+          display: flex;
+          align-items: center;
+          width: 214px;
+          height: 37px;
+        color: #fff;
+    }
+    .inicio-parent {
+          position: absolute;
+          top: calc(50% - 292px);
+          left: calc(50% - 202px);
+          width: 884px;
+          height: 40px;
+          font-size: 32px;
+    }
+    .e-services-parent {
+          position: absolute;
+          top: 3483px;
+          left: calc(50% - 962px);
+          background-color: #191963;
+          border-top: 9px solid #ff984d;
+          box-sizing: border-box;
+          width: 1920px;
+          height: 956px;
+          overflow: hidden;
+          font-size: 24px;
+          font-family: 'Josefin Sans';
+    }
+    .div {
+        
+          width: 100%;
+          position: relative;
+          background-color: #ffffff;
+          border: 1px solid #000;
+          box-sizing: border-box;
+          height: 4033px;
+          overflow: hidden;
+          text-align: left;
+          font-size: 18px;
+          color: #fff;
+          font-family: Montserrat;
+    }
+ /* -----------------------------------------------
+    RESET / GLOBAL STYLES
+----------------------------------------------- */
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f7f7f7; /* Un color general de fondo si no se especifica otro */
+    }
+    
+    /* -----------------------------------------------
+        LOGIN SECTION STYLES
+          ----------------------------------------------- */
+    .login-section {
+      min-height: 100vh;
+      background: url('/static/landing/assets/12_Mesa de trabajo 1 1 (1).png') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    
+    .login-box {
+      background: rgba(255, 255, 255, 0.92);
+      padding: 50px 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .login-box h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: #333;
+    }
+    
+    .login-box input {
+      width: 100%;
+      padding: 15px;
+      margin: 12px 0;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    
+    .login-box button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background 0.3s ease;
+    }
+    
+    .login-box button:hover {
+      background-color: #0056b3;
+    }
+    
+    .messages {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 15px;
+      color: red;
+    }
+    
+    .btn-secondary-sm {
+      display: inline-block;
+      margin-left: 10px;
+    }
+    
+    .btn-registrarse {
+      background-color: #ff984d;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    
+    .btn-registrarse:hover {
+      background-color:#5276ee;
+    }
+    

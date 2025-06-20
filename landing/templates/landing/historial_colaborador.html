@@ -1,0 +1,74 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">Historial de Servicios</h2>
+            <div>
+                <a href="{% url 'exportar_historial_colaborador_pdf' %}" class="btn btn-outline-success">
+                    <i class="fas fa-file-pdf"></i> Descargar PDF
+                </a>
+                <a href="{% url 'exportar_historial_colaborador_excel' %}" class="btn btn-outline-info">
+                    <i class="fas fa-file-excel"></i> Descargar Excel
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Título</th>
+                            <th>Empresa</th>
+                            <th>Fecha</th>
+                            <th>Ubicación</th>
+                            <th>Estado</th>
+                            <th>Calificación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for servicio in servicios %}
+                        <tr>
+                            <td>{{ servicio.titulo }}</td>
+                            <td>{{ servicio.publicado_por.get_full_name|default:servicio.publicado_por.username }}</td>
+                            <td>{{ servicio.fecha_servicio|date:"d/m/Y" }}</td>
+                            <td>{{ servicio.ubicacion }}</td>
+                            <td>
+                                <span class="badge {% if servicio.estado == 'completado' %}bg-success{% elif servicio.estado == 'en_progreso' %}bg-warning{% else %}bg-info{% endif %}">
+                                    {{ servicio.get_estado_display }}
+                                </span>
+                            </td>
+                            <td>
+                                {% with calificacion=servicio.calificacion_set.first %}
+                                    {% if calificacion %}
+                                        {{ calificacion.puntuacion }} <i class="fas fa-star text-warning"></i><br>
+                                        <small>{{ calificacion.comentario|default:"Sin comentario" }}</small>
+                                    {% else %}
+                                        <span class="text-muted">Sin calificar</span>
+                                    {% endif %}
+                                {% endwith %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center text-muted">No tienes servicios en tu historial.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <a href="{% url 'dashboard_colaborador' %}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Volver al panel
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

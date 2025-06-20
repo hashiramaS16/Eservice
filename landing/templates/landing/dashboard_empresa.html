@@ -1,0 +1,255 @@
+{% extends 'landing/base.html' %}
+{% load custom_filters %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-end">
+            <a href="{% url 'historial_empresa' %}" class="btn btn-outline-primary">
+                <i class="fas fa-history"></i> Ver historial de servicios
+            </a>
+        </div>
+    </div>
+    <!-- Sección de Servicios Publicados -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Mis Servicios Publicados</h5>
+                    <a href="{% url 'publicar_servicio' %}" class="btn btn-light btn-sm">
+                        <i class="fas fa-plus"></i> Publicar Nuevo Servicio
+                    </a>
+                </div>
+                <div class="card-body">
+                    {% if servicios %}
+                        <div class="list-group">
+                            {% for servicio in servicios %}
+                                {% if servicio.estado != 'completado' and not servicio.colaborador_asignado %}
+                                    <div class="list-group-item">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <h5 class="mb-0">{{ servicio.titulo }}</h5>
+                                            <div>
+                                                <span class="badge {% if servicio.estado == 'completado' %}bg-success{% elif servicio.estado == 'en_progreso' %}bg-warning{% else %}bg-info{% endif %} me-2">
+                                                    {{ servicio.get_estado_display }}
+                                                </span>
+                                                <div class="btn-group">
+                                                    <a href="{% url 'editar_servicio' servicio.id %}" class="btn btn-primary btn-sm">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal{{ servicio.id }}">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <p class="mb-2">{{ servicio.descripcion }}</p>
+                                        
+                                        <div class="mb-2">
+                                            <small class="text-muted">
+                                                <i class="fas fa-calendar"></i> Fecha: {{ servicio.fecha_servicio|date:"d/m/Y" }} |
+                                                <i class="fas fa-map-marker-alt"></i> Ubicación: {{ servicio.ubicacion }}
+                                            </small>
+                                        </div>
+
+                                        <!-- Postulaciones pendientes -->
+                                        {% if postulaciones_por_servicio|get_item:servicio.id %}
+                                            <div class="mt-3">
+                                                <h6>Postulaciones Pendientes:</h6>
+                                                <div class="list-group">
+                                                    {% for postulacion in postulaciones_por_servicio|get_item:servicio.id %}
+                                                        <div class="list-group-item">
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <strong>{{ postulacion.colaborador.get_full_name }}</strong>
+                                                                    <p class="mb-0">{{ postulacion.mensaje }}</p>
+                                                                    
+                                                                    <!-- Perfil del Colaborador -->
+                                                                    {% with perfil=postulacion.colaborador.perfilusuario %}
+                                                                    <div class="mt-2">
+                                                                        <h6 class="mb-2">Perfil del Colaborador:</h6>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <p><strong>Profesión:</strong> {{ perfil.profesion }}</p>
+                                                                                <p><strong>Experiencia:</strong> {{ perfil.experiencia }} años</p>
+                                                                                {% if perfil.certificado %}
+                                                                                    <p><strong>Certificado:</strong> 
+                                                                                        <a href="{{ perfil.certificado.url }}" target="_blank" class="btn btn-sm btn-info">
+                                                                                            <i class="fas fa-file-pdf"></i> Ver Certificado
+                                                                                        </a>
+                                                                                    </p>
+                                                                                {% endif %}
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                {% if perfil.cv %}
+                                                                                    <p><strong>CV:</strong>
+                                                                                        <a href="{{ perfil.cv.url }}" target="_blank" class="btn btn-sm btn-info">
+                                                                                            <i class="fas fa-file-pdf"></i> Ver CV
+                                                                                        </a>
+                                                                                    </p>
+                                                                                {% endif %}
+                                                                                {% if perfil.foto %}
+                                                                                    <img src="{{ perfil.foto.url }}" alt="Foto de perfil" class="img-thumbnail" style="max-width: 100px;">
+                                                                                {% endif %}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    {% endwith %}
+                                                                </div>
+                                                                <form method="post" action="{% url 'aceptar_postulacion' postulacion.id %}" class="d-inline">
+                                                                    {% csrf_token %}
+                                                                    <button type="submit" class="btn btn-success">
+                                                                        <i class="fas fa-check"></i> Aceptar
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <!-- Modal para confirmar eliminación -->
+                                    <div class="modal fade" id="eliminarModal{{ servicio.id }}" tabindex="-1" aria-labelledby="eliminarModalLabel{{ servicio.id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="eliminarModalLabel{{ servicio.id }}">Confirmar Eliminación</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Estás seguro de que deseas eliminar el servicio "{{ servicio.titulo }}"?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                    <form method="post" action="{% url 'eliminar_servicio' servicio.id %}" class="d-inline">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted text-center">No tienes servicios activos para mostrar.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Servicios en Progreso -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">Servicios en Progreso</h5>
+                </div>
+                <div class="card-body">
+                    {% for servicio in servicios %}
+                        {% if servicio.estado == 'en_progreso' and servicio.colaborador_asignado %}
+                            <div class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h5 class="mb-0">{{ servicio.titulo }}</h5>
+                                    <span class="badge bg-warning">En Progreso</span>
+                                </div>
+                                <p class="mb-2">{{ servicio.descripcion }}</p>
+                                <div class="mb-2">
+                                    <small class="text-muted">
+                                        <i class="fas fa-calendar"></i> Fecha: {{ servicio.fecha_servicio|date:"d/m/Y" }} |
+                                        <i class="fas fa-map-marker-alt"></i> Ubicación: {{ servicio.ubicacion }} |
+                                        <i class="fas fa-user"></i> Colaborador: {{ servicio.colaborador_asignado.get_full_name }}
+                                    </small>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    {% if servicio.colaborador_asignado %}
+                                        <a href="{% url 'chat_servicio' servicio.id %}" class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-comments"></i> Chat
+                                        </a>
+                                    {% endif %}
+                                    {% if servicio.estado == 'en_progreso' %}
+                                        <a href="{% url 'editar_servicio' servicio.id %}" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal{{ servicio.id }}">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Servicios Completados -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Servicios Completados</h5>
+                </div>
+                <div class="card-body">
+                    {% for servicio in servicios %}
+                        {% if servicio.estado == 'completado' %}
+                            <div class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h5 class="mb-0">{{ servicio.titulo }}</h5>
+                                    <span class="badge bg-success">Completado</span>
+                                </div>
+                                <p class="mb-2">{{ servicio.descripcion }}</p>
+                                <div class="mb-2">
+                                    <small class="text-muted">
+                                        <i class="fas fa-calendar"></i> Fecha: {{ servicio.fecha_servicio|date:"d/m/Y" }} |
+                                        <i class="fas fa-map-marker-alt"></i> Ubicación: {{ servicio.ubicacion }} |
+                                        <i class="fas fa-user"></i> Colaborador: {{ servicio.colaborador_asignado.get_full_name }}
+                                    </small>
+                                </div>
+                                {% if not servicio.calificacion_set.exists %}
+                                    <div class="d-flex justify-content-end">
+                                        <a href="{% url 'calificar_servicio' servicio.id %}" class="btn btn-warning">
+                                            <i class="fas fa-star"></i> Calificar Servicio
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Notificaciones -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Notificaciones</h5>
+                </div>
+                <div class="card-body">
+                    {% if notificaciones %}
+                        <div class="list-group">
+                            {% for notificacion in notificaciones %}
+                                <a href="{{ notificacion.url }}" class="list-group-item list-group-item-action">
+                                    {{ notificacion.mensaje }}
+                                    <small class="text-muted d-block">{{ notificacion.fecha|date:"d/m/Y H:i" }}</small>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted text-center">No tienes notificaciones nuevas.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,129 @@
+{% load static %}
+<style>
+.promo-section {
+  background: linear-gradient(90deg, #e3f2fd 60%, #f7f9fb 100%);
+  padding: 3rem 0 1rem 0;
+  text-align: center;
+  margin-bottom: 0;
+}
+.promo-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  color: #064663;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+.promo-cards {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+.promo-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(6,70,99,0.10);
+  padding: 2rem 1.2rem 1.5rem 1.2rem;
+  max-width: 340px;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.3s;
+  position: relative;
+  animation: bounceIn 0.8s cubic-bezier(.68,-0.55,.27,1.55);
+  will-change: transform;
+}
+.promo-card:hover {
+  transform: rotateY(8deg) scale(1.04);
+  box-shadow: 0 8px 32px rgba(6,70,99,0.18);
+  z-index: 2;
+}
+@keyframes bounceIn {
+  0% { transform: scale(0.8) translateY(40px); opacity: 0; }
+  60% { transform: scale(1.05) translateY(-10px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+.promo-card img {
+  width: 100%;
+  max-width: 120px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+.promo-card h3 {
+  font-size: 1.18rem;
+  color: #007BFF;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.promo-card p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1.2rem;
+}
+.promo-card .promo-btn {
+  background: linear-gradient(90deg, #064663 60%, #007BFF 100%);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.3s, transform 0.2s;
+  display: inline-block;
+  margin-top: 0.5rem;
+  position: relative;
+}
+.promo-card .promo-btn:hover {
+  background: linear-gradient(90deg, #007BFF 60%, #064663 100%);
+  transform: scale(1.05);
+}
+.promo-card .promo-btn[data-tooltip]:hover:after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  top: -38px;
+  transform: translateX(-50%);
+  background: #064663;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(6,70,99,0.10);
+  z-index: 10;
+  opacity: 0.95;
+}
+@media (max-width: 900px) {
+  .promo-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+}
+</style>
+<div class="promo-section">
+  <h2>¡Únete a E-Services!</h2>
+  <div class="promo-cards">
+    <!-- Registra tu empresa -->
+    <div class="promo-card">
+      <img src="{% static 'landing/assets/image (3).png' %}" alt="Registra tu empresa">
+      <h3>Registra tu empresa</h3>
+      <p>Conéctate con nuevos clientes y comienza a recibir solicitudes de servicios hoy mismo.</p>
+      <a href="{% url 'login' %}" class="promo-btn" data-tooltip="Registra tu empresa y accede a más clientes">¡Únete ahora!</a>
+    </div>
+    <!-- E-xclusivo -->
+    <div class="promo-card">
+      <img src="{% static 'landing/assets/image 2.png' %}" alt="E-xclusivo">
+      <h3>Conviértete en E-xclusivo</h3>
+      <p>Recibe descuentos y beneficios exclusivos. Suscríbete y mejora tu experiencia con E-Services.</p>
+      <a href="{% url 'login' %}" class="promo-btn" data-tooltip="Beneficios y descuentos exclusivos">¡Únete ahora!</a>
+    </div>
+    <!-- E-xpert -->
+    <div class="promo-card">
+      <img src="{% static 'landing/assets/image.png' %}" alt="E-xpert">
+      <h3>Únete como E-xpert</h3>
+      <p>Regístrate y comienza a recibir solicitudes de clientes que necesitan tus servicios.</p>
+      <a href="{% url 'login' %}" class="promo-btn" data-tooltip="Recibe solicitudes de clientes">¡Únete ahora!</a>
+    </div>
+  </div>
+</div>
+  

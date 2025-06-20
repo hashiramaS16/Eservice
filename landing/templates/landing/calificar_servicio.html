@@ -1,0 +1,72 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Calificar Servicio</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h5>Detalles del Servicio</h5>
+                        <p><strong>Servicio:</strong> {{ servicio.titulo }}</p>
+                        <p><strong>Colaborador:</strong> {{ servicio.colaborador_asignado.get_full_name }}</p>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-4">
+                            <label class="form-label">Calificación</label>
+                            <div class="star-rating">
+                                {% for i in "54321" %}
+                                <input type="radio" name="puntuacion" value="{{ i }}" id="puntuacion{{ i }}" required>
+                                <label for="puntuacion{{ i }}"><i class="fas fa-star"></i></label>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="comentario" class="form-label">Comentario (opcional)</label>
+                            <textarea name="comentario" id="comentario" class="form-control" rows="4" placeholder="Escribe tu comentario..."></textarea>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-star"></i> Enviar Calificación
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.star-rating {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    font-size: 1.5em;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    color: #ddd;
+    cursor: pointer;
+    padding: 0 0.1em;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffd700;
+}
+</style>
+{% endblock %}

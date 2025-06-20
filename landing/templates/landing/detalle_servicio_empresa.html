@@ -1,0 +1,17 @@
+<h2>{{ servicio.titulo }}</h2>
+<p><strong>Descripción:</strong> {{ servicio.descripcion }}</p>
+<p><strong>Ubicación:</strong> {{ servicio.ubicacion }}</p>
+<p><strong>Fecha:</strong> {{ servicio.fecha_servicio }}</p>
+<p><strong>Publicado por:</strong> {{ servicio.publicado_por.username }}</p>
+
+<h3>Mensajes de colaboradores:</h3>
+<ul>
+  {% for mensaje in mensajes %}
+    <li>
+      <strong>{{ mensaje.autor.username }}</strong> ({{ mensaje.fecha_envio|date:"d/m/Y H:i" }}):<br>
+      {{ mensaje.contenido }}
+    </li>
+  {% empty %}
+    <li>No hay mensajes aún.</li>
+  {% endfor %}
+</ul>
