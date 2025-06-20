@@ -1,0 +1,32 @@
+databases:
+  - name: eservice-db
+    databaseName: eservice
+    user: eservice_user
+    plan: free
+
+services:
+  - type: web
+    name: eservice-web
+    env: python
+    plan: free
+    buildCommand: cd E-service/eservice && ./build.sh
+    startCommand: cd E-service/eservice && gunicorn eservice.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.7
+      - key: DEBUG
+        value: False
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: eservice-db
+          property: connectionString
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false 
