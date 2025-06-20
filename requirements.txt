@@ -36,4 +36,7 @@ django-debug-toolbar>=4.2.0
 django-cors-headers>=4.3.0
 
 # Utilities
-python-dateutil>=2.8.0 
+python-dateutil>=2.8.0
+
+# Render specific
+dj-database-url>=2.0.0 
