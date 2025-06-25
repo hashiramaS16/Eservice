@@ -1,31 +1,63 @@
-# Eservice
-E-Services Django
-Este proyecto es una plataforma web desarrollada con Django para la gestión de servicios entre empresas y colaboradores. Permite publicar, buscar, asignar y calificar servicios, así como la comunicación en tiempo real mediante chat.
+# 🧰 Eservice – Plataforma de Gestión de Servicios con Django
 
-Características principales
-Registro y autenticación de usuarios (empresa y colaborador)
-Publicación y búsqueda de servicios
-Asignación y postulación a servicios
-Calificación de servicios
-Chat en tiempo real (Django Channels)
-Exportación de historial en PDF y Excel
-Instalación
-Clona el repositorio:
-git clone <URL-del-repositorio>
-Accede al directorio del proyecto:
-cd E-service0.2/E-service/eservice
+**Eservice** es una plataforma web desarrollada con **Django** para facilitar la gestión de servicios entre empresas y colaboradores. La aplicación permite publicar, buscar, asignar y calificar servicios, así como comunicarse en tiempo real mediante un sistema de chat integrado.
+
+---
+
+## 🚀 Características Principales
+
+- 🔐 Registro y autenticación de usuarios (empresas y colaboradores)
+- 📢 Publicación y búsqueda de servicios
+- 📌 Postulación y asignación de servicios
+- ⭐ Calificación de servicios completados
+- 💬 Chat en tiempo real usando **Django Channels**
+- 📄 Exportación de historial en formatos **PDF** y **Excel**
+
+---
+
+## 🛠 Instalación
+
+Sigue estos pasos para ejecutar el proyecto localmente:
+
+1. **Clona el repositorio**:
+   ```bash
+   git clone https://github.com/hashiramaS16/Eservice.git
+
+   Accede al directorio del proyecto:
+
+
+cd Eservice/E-service/eservice
 Instala las dependencias:
+
+
 pip install -r requirements.txt
-Realiza las migraciones:
+Aplica las migraciones:
+
+bash
+Copiar
+Editar
 python manage.py migrate
 Ejecuta el servidor de desarrollo:
+
+bash
+
+
 python manage.py runserver
-Dependencias principales
+📦 Principales Dependencias
 Django
+
 django-allauth
+
 channels
+
 openpyxl
+
 xhtml2pdf
+
 asgiref
-Licencia
-Este proyecto es solo para fines educativos.
+
+📄 Licencia
+Este proyecto ha sido creado únicamente con fines educativos. No se recomienda su uso en producción sin realizar mejoras de seguridad y escalabilidad.
+
+¡Gracias por visitar este proyecto! Si te resulta útil, no dudes en dejar una ⭐ en el repositorio.
+
