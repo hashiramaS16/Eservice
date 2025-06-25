@@ -1,0 +1,116 @@
+{% extends "landing/base.html" %}
+{% load static %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body {
+    background: linear-gradient(rgba(10, 30, 60, 0.7), rgba(10, 30, 60, 0.7)), url('{% static 'landing/assets/12_Mesa de trabajo 1 1 (1).png' %}') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    color: #222;
+  }
+
+  .home-section {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .home-box {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    max-width: 420px;
+    width: 100%;
+    padding: 2.5rem 2rem 2rem 2rem;
+    text-align: center;
+    backdrop-filter: blur(4px);
+  }
+
+  .home-box h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 2.3rem;
+    color: #0a1e3c;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+  }
+
+  .home-box p {
+    font-size: 1.18rem;
+    color: #444;
+    margin-bottom: 2.2rem;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .home-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-servicio,
+  .btn-publicar {
+    background: linear-gradient(90deg, #064663 60%, #007BFF 100%);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.13rem;
+    box-shadow: 0 4px 16px rgba(6,70,99,0.10);
+    border: none;
+    outline: none;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-servicio:hover,
+  .btn-publicar:hover {
+    background: linear-gradient(90deg, #007BFF 60%, #064663 100%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 8px 24px rgba(6,70,99,0.18);
+    color: #fff;
+  }
+
+  @media (max-width: 600px) {
+    .home-section {
+      padding: 0.5rem;
+    }
+    .home-box {
+      padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+      max-width: 98vw;
+    }
+    .home-box h2 {
+      font-size: 1.4rem;
+    }
+    .btn-servicio, .btn-publicar {
+      font-size: 1rem;
+      padding: 0.7rem 1.1rem;
+    }
+  }
+</style>
+
+<div class="home-section">
+  <div class="home-box">
+    <h2>¡Bienvenido, {{ user.first_name|default:user.username }}!</h2>
+    <p>¿Qué deseas hacer hoy?</p>
+
+    <div class="home-actions">
+      <a href="{% url 'buscar_servicios' %}" class="btn-servicio">🔍 Buscar servicios</a>
+      {% if user.perfilusuario.rol == 'empresa' %}
+        <a href="{% url 'publicar_servicio' %}" class="btn-publicar">🧰 Publicar un servicio</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

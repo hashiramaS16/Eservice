@@ -1,0 +1,59 @@
+/* responsive.css */
+
+/* Tablet */
+@media screen and (max-width: 1024px) {
+  .login-section {
+    padding: 30px 15px;
+  }
+
+  .login-box {
+    padding: 40px 25px;
+  }
+
+  .registra-tu-empresa {
+    font-size: 22px;
+  }
+
+  .conctate-con-nuevos {
+    font-size: 14px;
+    width: 90%;
+    left: 5%;
+  }
+}
+
+/* Móvil */
+@media screen and (max-width: 600px) {
+  .login-box {
+    padding: 30px 20px;
+  }
+
+  .login-box h2 {
+    font-size: 22px;
+  }
+
+  .login-box input {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .btn-registrarse {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .e-services2 {
+    font-size: 48px;
+    left: 10%;
+  }
+
+  .degradado-services-mesa-de-tra-parent {
+    height: auto;
+    padding: 20px;
+  }
+
+  .conctate-con-nuevos {
+    font-size: 12px;
+    text-align: center;
+    left: 5%;
+  }
+}

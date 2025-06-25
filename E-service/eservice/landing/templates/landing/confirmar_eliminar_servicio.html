@@ -1,0 +1,10 @@
+{% extends 'landing/base.html' %}
+{% block content %}
+<h2>¿Estás seguro de eliminar este servicio?</h2>
+<p><strong>{{ servicio.titulo }}</strong></p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+  <a href="{% url 'dashboard_empresa' %}">Cancelar</a>
+</form>
+{% endblock %}

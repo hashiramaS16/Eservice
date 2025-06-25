@@ -1,0 +1,167 @@
+{% extends "landing/base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+  body {
+    background: url("{% static 'landing/assets/12_Mesa de trabajo 1 1 (1).png' %}") no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+  }
+  .login-section {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  .login-box {
+    background-color: rgba(255,255,255,0.9);
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    max-width: 480px;
+    width: 100%;
+  }
+  .login-box h2 {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  input, select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  .form-error {
+    color: #d93025;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+  }
+  button.btn-primary {
+    width: 100%;
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button.btn-primary:hover {
+    background-color: #0056b3;
+  }
+  hr {
+    margin: 2rem 0;
+    border-color: #ccc;
+  }
+  .btn-ingreso {
+    display: inline-block;
+    background-color: #db4437;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  .btn-ingreso:hover {
+    background-color: #a33629;
+  }
+  .form-error p {
+    margin: 0;
+  }
+</style>
+
+<div class="login-section">
+  <div class="login-box">
+    <h2>Registrarse en E-Services</h2>
+
+    {% if form.non_field_errors %}
+      <div class="form-error">
+        {% for error in form.non_field_errors %}
+          <p>{{ error }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+
+      <div class="form-group">
+        {{ form.email.label_tag }}
+        {{ form.email }}
+        {% if form.email.errors %}
+          <div class="form-error">{{ form.email.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+        {% if form.username.errors %}
+          <div class="form-error">{{ form.username.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.first_name.label_tag }}
+        {{ form.first_name }}
+        {% if form.first_name.errors %}
+          <div class="form-error">{{ form.first_name.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.last_name.label_tag }}
+        {{ form.last_name }}
+        {% if form.last_name.errors %}
+          <div class="form-error">{{ form.last_name.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.rol.label_tag }}
+        {{ form.rol }}
+        {% if form.rol.errors %}
+          <div class="form-error">{{ form.rol.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.password1.label_tag }}
+        {{ form.password1 }}
+        {% if form.password1.errors %}
+          <div class="form-error">{{ form.password1.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.password2.label_tag }}
+        {{ form.password2 }}
+        {% if form.password2.errors %}
+          <div class="form-error">{{ form.password2.errors }}</div>
+        {% endif %}
+      </div>
+
+      <button type="submit" class="btn btn-primary">Registrarme</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

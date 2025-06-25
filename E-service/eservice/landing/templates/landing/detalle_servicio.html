@@ -1,0 +1,240 @@
+{% extends 'landing/base.html' %}
+{% block head %}
+<style>
+  body {
+    background-color: #e2f4fc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0 20px;
+    color: #333;
+  }
+
+  .detalle-servicio {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffffcc;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .detalle-servicio h2 {
+    text-align: center;
+    color: #064663;
+    margin-bottom: 20px;
+  }
+
+  .detalle-servicio p {
+    font-size: 1rem;
+    margin: 12px 0;
+    color: #222;
+  }
+
+  .postulacion-section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+  }
+
+  .postulacion-actions {
+    text-align: center;
+  }
+
+  .btn-postular {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-postular:hover {
+    background-color: #218838;
+    color: white;
+    text-decoration: none;
+  }
+
+  .alert-info {
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    color: #004085;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 10px 0;
+  }
+
+  hr {
+    margin: 30px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+  }
+
+  h3 {
+    color: #0288d1;
+    margin-bottom: 15px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  form input[type="text"],
+  form textarea {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+  }
+
+  form input:focus,
+  form textarea:focus {
+    border-color: #0288d1;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 132, 255, 0.3);
+  }
+
+  button[type="submit"] {
+    background-color: #0288d1;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background-color 0.3s ease;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #026fa4;
+  }
+
+  .mensaje {
+    background-color: #f5faff;
+    border-left: 4px solid #0288d1;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+  }
+
+  .mensaje strong {
+    display: block;
+    color: #064663;
+    margin-bottom: 4px;
+  }
+
+  .mensaje small {
+    color: #666;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 600px) {
+    .detalle-servicio {
+      padding: 20px;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="detalle-servicio">
+  <h2>{{ servicio.titulo }}</h2>
+
+  <!-- Mensajes de depuración -->
+  <div style="background: #f8f9fa; padding: 10px; margin: 10px 0; border-radius: 5px;">
+    <p><strong>Estado de depuración:</strong></p>
+    <p>Rol del usuario: {{ perfil.rol }}</p>
+    <p>Colaborador asignado: {{ servicio.colaborador_asignado|default:"Ninguno" }}</p>
+    <p>Estado del servicio: {{ servicio.estado }}</p>
+    <p>Ya postulado: {{ ya_postulado }}</p>
+  </div>
+
+  <p><strong>Publicado por:</strong> {{ servicio.publicado_por.username }}</p>
+  <p><strong>Categoría:</strong> {{ servicio.categoria }}</p>
+  <p><strong>Descripción:</strong> {{ servicio.descripcion }}</p>
+  <p><strong>Ubicación:</strong> {{ servicio.ubicacion }}</p>
+  <p><strong>Fecha del servicio:</strong> {{ servicio.fecha_servicio }}</p>
+  <p><strong>Tipo de pago:</strong> {{ servicio.tipo_pago }} - ${{ servicio.valor }}</p>
+
+  {% if not servicio.colaborador_asignado and servicio.estado != 'completado' %}
+    {% if perfil.rol == 'colaborador' %}
+      <div class="postulacion-section">
+        {% if ya_postulado %}
+          <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i> Ya te has postulado a este servicio.
+          </div>
+        {% else %}
+          <div class="postulacion-actions">
+            <a href="{% url 'postularse_servicio' servicio.id %}" class="btn-postular">
+              <i class="fas fa-paper-plane"></i> Postularme a este servicio
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endif %}
+
+  {% if perfil.rol == 'empresa' and user == servicio.publicado_por %}
+    <div class="postulaciones-section">
+      <h3><i class="fas fa-users"></i> Postulaciones recibidas</h3>
+      {% if postulaciones %}
+        <div class="list-group">
+          {% for postulacion in postulaciones %}
+            <div class="list-group-item">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h5 class="mb-1">{{ postulacion.colaborador.username }}</h5>
+                  <p class="mb-1">{{ postulacion.mensaje|default:"Sin mensaje" }}</p>
+                  <small class="text-muted">Postulado el {{ postulacion.fecha_postulacion|date:"d/m/Y H:i" }}</small>
+                </div>
+                {% if postulacion.estado == 'pendiente' %}
+                  <form method="post" action="{% url 'aceptar_postulacion' postulacion.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">
+                      <i class="fas fa-check"></i> Aceptar
+                    </button>
+                  </form>
+                {% elif postulacion.estado == 'aceptada' %}
+                  <span class="badge bg-success">Aceptada</span>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-muted">Aún no hay postulaciones para este servicio.</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <hr>
+
+  <h3>Enviar mensaje</h3>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">💬 Enviar</button>
+  </form>
+
+  <hr>
+
+  <h3>Mensajes recibidos</h3>
+  {% for mensaje in mensajes %}
+    <div class="mensaje">
+      <strong>{{ mensaje.autor.username }}:</strong>
+      {{ mensaje.contenido }}
+      <small>{{ mensaje.fecha_envio }}</small>
+    </div>
+  {% empty %}
+    <p>Aún no hay mensajes.</p>
+  {% endfor %}
+</div>
+{% endblock %}

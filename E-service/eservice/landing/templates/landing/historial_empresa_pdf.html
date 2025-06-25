@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Historial de Servicios - Empresa</title>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 12px; }
+        h2 { color: #064663; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 6px; text-align: left; }
+        th { background: #e3f2fd; }
+    </style>
+</head>
+<body>
+    <h2>Historial de Servicios - {{ user.get_full_name|default:user.username }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Colaborador</th>
+                <th>Fecha</th>
+                <th>Ubicación</th>
+                <th>Estado</th>
+                <th>Calificación</th>
+                <th>Comentario</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for servicio in servicios %}
+            <tr>
+                <td>{{ servicio.titulo }}</td>
+                <td>{% if servicio.colaborador_asignado %}{{ servicio.colaborador_asignado.get_full_name|default:servicio.colaborador_asignado.username }}{% else %}Sin asignar{% endif %}</td>
+                <td>{{ servicio.fecha_servicio|date:"d/m/Y" }}</td>
+                <td>{{ servicio.ubicacion }}</td>
+                <td>{{ servicio.get_estado_display }}</td>
+                {% with calificacion=servicio.calificacion_set.first %}
+                <td>{% if calificacion %}{{ calificacion.puntuacion }}{% else %}Sin calificar{% endif %}</td>
+                <td>{% if calificacion %}{{ calificacion.comentario|default:"Sin comentario" }}{% else %}Sin comentario{% endif %}</td>
+                {% endwith %}
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">No tienes servicios en tu historial.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html> 

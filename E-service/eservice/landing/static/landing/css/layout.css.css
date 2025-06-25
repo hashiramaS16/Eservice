@@ -1,0 +1,214 @@
+.child {
+  position: absolute;
+  top: -23px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.25);
+  width: 1947px;
+  height: 1306px;
+  display: none;
+}
+
+.mesa-de-trabajo-1-1 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1921px;
+  height: 1334px;
+  object-fit: cover;
+}
+
+.item {
+  position: absolute;
+  top: 84px;
+  left: -1px;
+  background-color: rgba(25, 25, 99, 0.5);
+  width: 1922px;
+  height: 1250px;
+}
+
+.resolvemos {
+  margin: 0;
+}
+
+.ti {
+  color: #ff984d;
+}
+
+.resolvemos-por-ti-container {
+  position: absolute;
+  top: calc(50% - 1836.5px);
+  left: calc(50% - 787px);
+  font-size: 100px;
+  line-height: 90%;
+  font-weight: 900;
+}
+
+.png-1-icon {
+  position: absolute;
+  top: -54px;
+  left: -81px;
+  width: 2082px;
+  height: 1443px;
+  object-fit: cover;
+}
+
+.blur-mesa-de-trabajo-1-1 {
+  position: absolute;
+  top: 0px;
+  left: calc(50% - 961px);
+  width: 1921px;
+  height: 1334px;
+  object-fit: cover;
+}
+
+.resolver {
+  position: absolute;
+  top: 14px;
+  left: 42px;
+}
+
+.frame-child {
+  position: absolute;
+  top: 16.25px;
+  left: 180px;
+  width: 9px;
+  height: 17.5px;
+}
+
+.resolver-parent {
+  position: absolute;
+  top: 837px;
+  left: calc(50% - 769px);
+  background-color: #fff;
+  width: 203px;
+  height: 50px;
+  overflow: hidden;
+  text-align: center;
+  color: #191963;
+}
+
+.frame-item {
+  position: absolute;
+  top: -24px;
+  left: 0px;
+  background-color: rgba(25, 25, 99, 0.5);
+  width: 1922px;
+  height: 124px;
+}
+
+.e-services {
+  position: absolute;
+  top: calc(50% - 18px);
+  left: 185px;
+  font-size: 32px;
+  display: inline-block;
+  width: 159px;
+  height: 34px;
+}
+
+.ssdev-code {
+  position: absolute;
+  top: calc(50% - 31px);
+  left: 56px;
+  font-size: 14px;
+  display: inline-block;
+  text-align: center;
+  width: 65px;
+  height: 12px;
+  transform:  rotate(90deg);
+  transform-origin: 0 0;
+}
+
+.inicio {
+  position: absolute;
+  top: calc(50% - 3px);
+  left: calc(50% - 15px);
+  display: flex;
+  align-items: center;
+  width: 64px;
+  height: 10px;
+}
+
+.sobre-nosotros {
+  position: absolute;
+  top: calc(50% - 3px);
+  left: 1113px;
+  display: flex;
+  align-items: center;
+  width: 120px;
+  height: 10px;
+}
+
+.contactanos {
+  position: absolute;
+  top: calc(50% - 6px);
+  left: 1511px;
+  display: flex;
+  align-items: center;
+  width: 102px;
+  height: 13px;
+}
+
+.ingreso {
+  position: absolute;
+  top: 9px;
+  left: 43px;
+}
+
+.btn-primary-sm-active {
+  position: absolute;
+  top: 26px;
+  left: calc(50% + 746px);
+  border: 1px solid #fff;
+  box-sizing: border-box;
+  width: 132px;
+  height: 32px;
+  overflow: hidden;
+  text-align: center;
+  font-size: 14px;
+}
+
+.mesa-de-trabajo-1-1-parent {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1920px;
+  height: 84px;
+  overflow: hidden;
+  font-family: 'Josefin Sans';
+}
+
+.ya-no-pierdas-container1 {
+  width: 100%;
+}
+
+.ya-no-pierdas-container {
+  position: absolute;
+  top: calc(50% - 1412.5px);
+  left: calc(50% - 767px);
+  font-size: 24px;
+  letter-spacing: 0.02em;
+  line-height: 151%;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  width: 804px;
+}
+
+.degradado-services-mesa-de-tra {
+  position: absolute;
+  top: calc(50% - 691.5px);
+  left: calc(50% - 782px);
+  width: 1920px;
+  height: 1464px;
+  object-fit: cover;
+}
+
+.degradado-services-mesa-de-tra2 {
+  position: absolute;
+  top: 167px;
+  left: 0px;
+  width: 1920px;
+  height: 1163px;
+  object-fit: cover;
+}

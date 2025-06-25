@@ -1,0 +1,126 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .perfil-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .perfil-avatar {
+    grid-row: span 2;
+    justify-self: center;
+  }
+
+  .perfil-avatar img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #007BFF;
+    box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+  }
+
+  .perfil-header {
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .perfil-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #007BFF;
+  }
+
+  .perfil-info {
+    grid-column: 2;
+    margin-top: 0.5rem;
+  }
+
+  .perfil-info p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  .perfil-info p strong {
+    color: #333;
+  }
+
+  /* Botón editar perfil */
+  .btn-editar {
+    margin-top: 1.5rem;
+    display: inline-block;
+    background: #28a745;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  .btn-editar:hover {
+    background: #218838;
+  }
+</style>
+
+<div class="perfil-container">
+  <div class="perfil-avatar">
+    {% if perfil.foto %}
+      <img src="{{ perfil.foto.url }}" alt="Foto de perfil de {{ perfil.user.username }}">
+    {% else %}
+      <img src="{% static 'landing/assets/default-avatar.png' %}" alt="Avatar por defecto">
+    {% endif %}
+  </div>
+
+  <div class="perfil-header">
+    <h2>👤 {{ perfil.user.first_name|default:perfil.user.username }} {{ perfil.user.last_name }}</h2>
+  </div>
+
+  <div class="perfil-info">
+    <p><strong>Username:</strong> {{ perfil.user.username }}</p>
+    <p><strong>Email:</strong> {{ perfil.user.email }}</p>
+    <p><strong>Profesión:</strong> {{ perfil.profesion|default:"Sin profesión definida" }}</p>
+    <p><strong>Rol:</strong> {{ perfil.get_rol_display }}</p>
+    <p><strong>Servicios publicados:</strong> {{ perfil.user.servicio_set.count }}</p>
+    <p><strong>Mensajes enviados:</strong> {{ perfil.user.mensajes.count }}</p>
+  </div>
+</div>
+  </div> <!-- .perfil-info -->
+
+
+  {% if perfil.rol == 'colaborador' %}
+    <div class="perfil-info" style="margin-top: 1.5rem;">
+      <p><strong>Hoja de Vida:</strong>
+        {% if perfil.cv %}
+          <a href="{{ perfil.cv.url }}" target="_blank" style="color: #007BFF;">📄 Ver documento</a>
+        {% else %}
+          No cargada
+        {% endif %}
+      </p>
+      <p><strong>Certificado:</strong>
+        {% if perfil.certificado %}
+          <a href="{{ perfil.certificado.url }}" target="_blank" style="color: #007BFF;">📄 Ver certificado</a>
+        {% else %}
+          No cargado
+        {% endif %}
+      </p>
+    </div>
+  {% endif %}
+</div>
+
+
+<div style="text-align:center;">
+  <a href="{% url 'editar_perfil' %}" class="btn-editar">✏️ Editar Perfil</a>
+</div>
+{% endblock %}

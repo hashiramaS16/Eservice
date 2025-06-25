@@ -1,0 +1,22 @@
+{% extends "landing/base.html" %}
+
+{% block content %}
+<h2>Asignar Colaborador al Servicio: {{ servicio.titulo }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <label for="colaborador">Selecciona un colaborador:</label>
+    <select name="colaborador" id="colaborador" required>
+        <option value="">-- Selecciona un colaborador --</option>
+        {% for colaborador in colaboradores %}
+            <option value="{{ colaborador.id }}">
+                {{ colaborador.first_name }} {{ colaborador.last_name }} ({{ colaborador.username }})
+            </option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+    <button type="submit">Asignar</button>
+</form>
+{% endblock %}
