@@ -1,0 +1,393 @@
+{% extends 'landing/base.html' %}
+{% block head %}
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<style>
+  body {
+    background: linear-gradient(135deg, #191963 0%, #2a2a7a 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  .detail-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .detail-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(25, 25, 99, 0.2);
+    padding: 3rem;
+    max-width: 900px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .service-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 3px solid #ff984d;
+  }
+
+  .service-header h2 {
+    color: #191963;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-category {
+    display: inline-block;
+    background: #ff984d;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .info-section {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 15px;
+    border-left: 4px solid #ff984d;
+  }
+
+  .info-section h4 {
+    color: #191963;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .info-item i {
+    color: #ff984d;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    width: 20px;
+    text-align: center;
+  }
+
+  .info-item strong {
+    color: #191963;
+    margin-right: 0.5rem;
+  }
+
+  .info-item span {
+    color: #666;
+  }
+
+  .price-section {
+    background: linear-gradient(135deg, #ff984d, #e67e22);
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .price-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .price-label {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+
+  .urgency-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    margin: 0.5rem;
+  }
+
+  .urgency-baja { background: #27ae60; color: white; }
+  .urgency-media { background: #f39c12; color: white; }
+  .urgency-alta { background: #e74c3c; color: white; }
+
+  .action-section {
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .btn-postular {
+    background: linear-gradient(135deg, #ff984d, #e67e22);
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 152, 77, 0.3);
+  }
+
+  .btn-postular:hover {
+    background: linear-gradient(135deg, #e67e22, #d35400);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 152, 77, 0.4);
+    color: white;
+    text-decoration: none;
+  }
+
+  .btn-secondary {
+    background: #6c757d;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    background: #5a6268;
+    color: white;
+    text-decoration: none;
+  }
+
+  .messages-section {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-top: 2rem;
+  }
+
+  .messages-section h3 {
+    color: #191963;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #ff984d;
+    padding-bottom: 0.5rem;
+  }
+
+  .message-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border-left: 4px solid #ff984d;
+  }
+
+  .message-author {
+    font-weight: 600;
+    color: #191963;
+    margin-bottom: 0.5rem;
+  }
+
+  .message-time {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .message-content {
+    color: #333;
+    line-height: 1.5;
+  }
+
+  .alert-info {
+    background: linear-gradient(135deg, #17a2b8, #138496);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .debug-section {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  @media (max-width: 768px) {
+    .detail-card {
+      padding: 2rem;
+      margin: 1rem;
+    }
+    
+    .service-info {
+      grid-template-columns: 1fr;
+    }
+    
+    .service-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="detail-container">
+  <div class="detail-card">
+    <!-- Header del servicio -->
+    <div class="service-header">
+      <div class="service-category">
+        <i class="fas fa-tag"></i> {{ servicio.categoria }}
+      </div>
+      <h2>{{ servicio.titulo }}</h2>
+      <p class="text-muted">Publicado por {{ servicio.publicado_por.get_full_name|default:servicio.publicado_por.username }}</p>
+    </div>
+
+    <!-- Información del servicio -->
+    <div class="service-info">
+      <div class="info-section">
+        <h4><i class="fas fa-info-circle"></i> Detalles del Servicio</h4>
+        
+        <div class="info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <strong>Ubicación:</strong>
+          <span>{{ servicio.ubicacion }}</span>
+        </div>
+        
+        <div class="info-item">
+          <i class="fas fa-calendar-alt"></i>
+          <strong>Fecha:</strong>
+          <span>{{ servicio.fecha_servicio|date:"d/m/Y" }}</span>
+        </div>
+        
+        <div class="info-item">
+          <i class="fas fa-clock"></i>
+          <strong>Horario:</strong>
+          <span>{{ servicio.get_horario_icon }} {{ servicio.get_horario_preferido_display }}</span>
+        </div>
+        
+        <div class="info-item">
+          <i class="fas fa-credit-card"></i>
+          <strong>Pago:</strong>
+          <span>{{ servicio.tipo_pago }}</span>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h4><i class="fas fa-chart-line"></i> Estado y Urgencia</h4>
+        
+        <div class="info-item">
+          <i class="fas fa-info-circle"></i>
+          <strong>Estado:</strong>
+          <span class="badge bg-{% if servicio.estado == 'pendiente' %}warning{% elif servicio.estado == 'en_progreso' %}info{% else %}success{% endif %}">
+            {{ servicio.get_estado_display }}
+          </span>
+        </div>
+        
+        <div class="info-item">
+          <i class="fas fa-exclamation-triangle"></i>
+          <strong>Urgencia:</strong>
+          <span class="urgency-badge urgency-{{ servicio.urgencia }}">
+            {{ servicio.get_urgencia_icon }} {{ servicio.get_urgencia_display }}
+          </span>
+        </div>
+        
+        {% if servicio.colaborador_asignado %}
+        <div class="info-item">
+          <i class="fas fa-user-check"></i>
+          <strong>Asignado a:</strong>
+          <span>{{ servicio.colaborador_asignado.get_full_name|default:servicio.colaborador_asignado.username }}</span>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Precio destacado -->
+    <div class="price-section">
+      <div class="price-amount">{{ servicio.get_valor_formateado }}</div>
+      <div class="price-label">Valor del servicio</div>
+    </div>
+
+    <!-- Descripción -->
+    <div class="info-section">
+      <h4><i class="fas fa-align-left"></i> Descripción del Servicio</h4>
+      <p style="line-height: 1.6; color: #333;">{{ servicio.descripcion }}</p>
+    </div>
+
+    <!-- Acciones -->
+    {% if not servicio.colaborador_asignado and servicio.estado != 'completado' %}
+      {% if perfil.rol == 'colaborador' %}
+        <div class="action-section">
+          {% if ya_postulado %}
+            <div class="alert alert-info">
+              <i class="fas fa-info-circle"></i> Ya te has postulado a este servicio. Espera la respuesta de la empresa.
+            </div>
+          {% else %}
+            <a href="{% url 'postularse_servicio' servicio.id %}" class="btn-postular">
+              <i class="fas fa-paper-plane"></i> Postularme a este servicio
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endif %}
+
+    <!-- Mensajes -->
+    {% if mensajes %}
+    <div class="messages-section">
+      <h3><i class="fas fa-comments"></i> Mensajes del Servicio</h3>
+      {% for mensaje in mensajes %}
+        <div class="message-item">
+          <div class="message-author">
+            <i class="fas fa-user"></i> {{ mensaje.autor.get_full_name|default:mensaje.autor.username }}
+          </div>
+          <div class="message-time">
+            <i class="fas fa-clock"></i> {{ mensaje.fecha_envio|date:"d/m/Y H:i" }}
+          </div>
+          <div class="message-content">{{ mensaje.contenido }}</div>
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Sección de debug (solo para desarrollo) -->
+    {% if debug %}
+    <div class="debug-section">
+      <strong>Debug:</strong><br>
+      Rol del usuario: {{ perfil.rol }}<br>
+      Colaborador asignado: {{ servicio.colaborador_asignado|default:"Ninguno" }}<br>
+      Estado del servicio: {{ servicio.estado }}<br>
+      Ya postulado: {{ ya_postulado }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+/* services.css */
+.degradado-services-mesa-de-tra-parent {
+  position: absolute;
+  top: 2382px;
+  left: 0px;
+  background-color: #191963;
+  width: 1920px;
+  height: 1112px;
+  overflow: hidden;
+  text-align: center;
+  font-size: 34px;
+  color: #191963;
+}
+
+.e-services2 {
+  position: absolute;
+  top: calc(50% - 328px);
+  left: 104px;
+  font-size: 96px;
+  color: #ff984d;
+}
+
+/* ... otros estilos relacionados a la sección servicios ... */

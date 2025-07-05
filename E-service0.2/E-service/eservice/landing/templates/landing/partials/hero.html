@@ -1,0 +1,76 @@
+{% load static %}
+<style>
+.hero-section {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgba(10, 30, 60, 0.7), rgba(10, 30, 60, 0.7)), url('{% static 'landing/assets/12_Mesa de trabajo 1 1 (1).png' %}') no-repeat center center;
+  background-size: cover;
+  padding: 0;
+}
+.hero-content {
+  background: rgba(255,255,255,0.92);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+  padding: 2.5rem 2rem;
+  max-width: 500px;
+  width: 95%;
+  text-align: center;
+  margin: 2rem 0;
+}
+.hero-content h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #064663;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+.hero-content h2 {
+  font-size: 1.5rem;
+  color: #007BFF;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+.hero-content p {
+  font-size: 1.15rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+.hero-btn {
+  background: linear-gradient(90deg, #064663 60%, #007BFF 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.85rem 2rem;
+  font-size: 1.13rem;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(6,70,99,0.10);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+.hero-btn:hover {
+  background: linear-gradient(90deg, #007BFF 60%, #064663 100%);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(6,70,99,0.18);
+}
+@media (max-width: 600px) {
+  .hero-content {
+    padding: 1.2rem 0.5rem;
+  }
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+}
+</style>
+<div class="hero-section">
+  <div class="hero-content">
+    <h1>Resolvemos <span style="color:#007BFF">por ti</span></h1>
+    <h2>Soluciones rápidas y confiables para tu hogar</h2>
+    <p>Ya no pierdas tiempo buscando soluciones.<br>En <b>E-Services</b>, conectamos a los mejores profesionales para que se encarguen de las tareas del hogar por ti, rápido y con confianza.</p>
+    <a href="{% url 'login' %}" class="hero-btn">Comienza ahora</a>
+  </div>
+</div>

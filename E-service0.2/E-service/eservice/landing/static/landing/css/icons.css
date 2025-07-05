@@ -1,0 +1,20 @@
+/* icons.css */
+.mail-icon {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 37px;
+  height: 37px;
+  overflow: hidden;
+}
+
+.contactoseservicescom {
+  position: absolute;
+  top: 4px;
+  left: 59px;
+  line-height: 120%;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* ... otros iconos y pequeños elementos ... */

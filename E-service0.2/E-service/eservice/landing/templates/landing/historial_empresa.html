@@ -1,0 +1,455 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block head %}
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<style>
+  body {
+    background: linear-gradient(135deg, #191963 0%, #2a2a7a 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  .history-container {
+    min-height: 100vh;
+    padding: 2rem;
+  }
+
+  .history-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: white;
+  }
+
+  .history-header h1 {
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .history-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+
+  .stats-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(25, 25, 99, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(25, 25, 99, 0.25);
+  }
+
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.2rem;
+    color: white;
+  }
+
+  .stat-icon.total {
+    background: linear-gradient(135deg, #ff984d, #e67e22);
+  }
+
+  .stat-icon.completed {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+  }
+
+  .stat-icon.rating {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #191963;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .main-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(25, 25, 99, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+  }
+
+  .card-header {
+    background: linear-gradient(135deg, #ff984d, #e67e22);
+    color: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-header h3 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.3rem;
+  }
+
+  .export-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .btn-export {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+  }
+
+  .btn-export:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+
+  .card-body {
+    padding: 2rem;
+  }
+
+  .history-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .history-table th {
+    background: linear-gradient(135deg, #191963, #2a2a7a);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border: none;
+  }
+
+  .history-table th:first-child {
+    border-top-left-radius: 10px;
+  }
+
+  .history-table th:last-child {
+    border-top-right-radius: 10px;
+  }
+
+  .history-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+  }
+
+  .history-table tr:hover {
+    background: rgba(255, 152, 77, 0.05);
+  }
+
+  .service-title {
+    color: #191963;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .collaborator-name {
+    color: #666;
+    font-weight: 500;
+  }
+
+  .service-date {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .service-location {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .status-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .status-completado {
+    background: rgba(46, 204, 113, 0.2);
+    color: #27ae60;
+  }
+
+  .status-en_progreso {
+    background: rgba(52, 152, 219, 0.2);
+    color: #3498db;
+  }
+
+  .status-pendiente {
+    background: rgba(255, 152, 77, 0.2);
+    color: #e67e22;
+  }
+
+  .rating-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .rating-score {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .rating-comment {
+    color: #666;
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+
+  .no-rating {
+    color: #999;
+    font-size: 0.8rem;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+  }
+
+  .empty-state i {
+    font-size: 4rem;
+    color: #ff984d;
+    margin-bottom: 1rem;
+  }
+
+  .empty-state h4 {
+    color: #191963;
+    margin-bottom: 1rem;
+  }
+
+  .back-button {
+    background: linear-gradient(135deg, #191963, #2a2a7a);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .back-button:hover {
+    background: linear-gradient(135deg, #2a2a7a, #191963);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .history-container {
+      padding: 1rem;
+    }
+    
+    .history-header h1 {
+      font-size: 2rem;
+    }
+    
+    .stats-summary {
+      grid-template-columns: 1fr;
+    }
+    
+    .card-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .export-buttons {
+      flex-direction: column;
+    }
+    
+    .history-table {
+      font-size: 0.8rem;
+    }
+    
+    .history-table th,
+    .history-table td {
+      padding: 0.5rem;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="history-container">
+  <!-- Header -->
+  <div class="history-header">
+    <h1><i class="fas fa-history"></i> Historial de Servicios</h1>
+    <p>Revisa todos tus servicios publicados</p>
+  </div>
+
+  <!-- Estadísticas -->
+  <div class="stats-summary">
+    <div class="stat-card">
+      <div class="stat-icon total">
+        <i class="fas fa-briefcase"></i>
+      </div>
+      <div class="stat-number">{{ servicios|length }}</div>
+      <div class="stat-label">Total Servicios</div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon completed">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <div class="stat-number">{{ servicios_completados|default:0 }}</div>
+      <div class="stat-label">Completados</div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon rating">
+        <i class="fas fa-star"></i>
+      </div>
+      <div class="stat-number">{{ promedio_calificaciones|floatformat:1|default:"0.0" }}</div>
+      <div class="stat-label">Calificación Promedio</div>
+    </div>
+  </div>
+
+  <!-- Tabla de Historial -->
+  <div class="main-card">
+    <div class="card-header">
+      <h3><i class="fas fa-list"></i> Lista de Servicios</h3>
+      <div class="export-buttons">
+        <a href="{% url 'exportar_historial_empresa_pdf' %}" class="btn-export">
+          <i class="fas fa-file-pdf"></i> PDF
+        </a>
+        <a href="{% url 'exportar_historial_empresa_excel' %}" class="btn-export">
+          <i class="fas fa-file-excel"></i> Excel
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+      {% if servicios %}
+        <div class="table-responsive">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th><i class="fas fa-tag"></i> Título</th>
+                <th><i class="fas fa-user"></i> Colaborador</th>
+                <th><i class="fas fa-calendar"></i> Fecha</th>
+                <th><i class="fas fa-map-marker-alt"></i> Ubicación</th>
+                <th><i class="fas fa-info-circle"></i> Estado</th>
+                <th><i class="fas fa-star"></i> Calificación</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for servicio in servicios %}
+                <tr>
+                  <td>
+                    <div class="service-title">{{ servicio.titulo }}</div>
+                  </td>
+                  <td>
+                    <div class="collaborator-name">
+                      {% if servicio.colaborador_asignado %}
+                        {{ servicio.colaborador_asignado.get_full_name|default:servicio.colaborador_asignado.username }}
+                      {% else %}
+                        <span class="text-muted">Sin asignar</span>
+                      {% endif %}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="service-date">{{ servicio.fecha_servicio|date:"d/m/Y" }}</div>
+                  </td>
+                  <td>
+                    <div class="service-location">{{ servicio.ubicacion }}</div>
+                  </td>
+                  <td>
+                    <span class="status-badge status-{{ servicio.estado }}">
+                      {{ servicio.get_estado_display }}
+                    </span>
+                  </td>
+                  <td>
+                    {% with calificacion=servicio.calificacion_set.first %}
+                      {% if calificacion %}
+                        <div class="rating-display">
+                          <div class="rating-score">
+                            {{ calificacion.puntuacion }} <i class="fas fa-star"></i>
+                          </div>
+                          <div class="rating-comment">
+                            "{{ calificacion.comentario|default:'Sin comentario' }}"
+                          </div>
+                        </div>
+                      {% else %}
+                        <div class="no-rating">Sin calificar</div>
+                      {% endif %}
+                    {% endwith %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <div class="empty-state">
+          <i class="fas fa-history"></i>
+          <h4>No tienes servicios en tu historial</h4>
+          <p>Comienza publicando tu primer servicio</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Botón Volver -->
+  <div style="text-align: center; margin-top: 2rem;">
+    <a href="{% url 'dashboard_empresa' %}" class="back-button">
+      <i class="fas fa-arrow-left"></i> Volver al Panel
+    </a>
+  </div>
+</div>
+{% endblock %} 

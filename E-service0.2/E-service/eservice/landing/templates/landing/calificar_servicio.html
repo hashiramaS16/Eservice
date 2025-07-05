@@ -1,0 +1,421 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block head %}
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    background: linear-gradient(135deg, #191963 0%, #2a2a7a 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+
+  .calificar-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+  }
+
+  .calificar-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('{% static 'landing/assets/12_Mesa de trabajo 1 1 (1).png' %}') no-repeat center center;
+    background-size: cover;
+    opacity: 0.1;
+    z-index: -1;
+  }
+
+  .calificar-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(25, 25, 99, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    max-width: 700px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .calificar-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(135deg, #ff984d, #e67e22);
+  }
+
+  .calificar-header {
+    background: linear-gradient(135deg, #ff984d, #e67e22);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .calificar-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('{% static 'landing/assets/12_Mesa de trabajo 1 1 (1).png' %}') no-repeat center center;
+    background-size: cover;
+    opacity: 0.1;
+  }
+
+  .calificar-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .calificar-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+  }
+
+  .calificar-body {
+    padding: 2.5rem;
+  }
+
+  .servicio-info {
+    background: rgba(255, 152, 77, 0.05);
+    border: 1px solid rgba(255, 152, 77, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .servicio-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #ff984d, #e67e22);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  .servicio-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #191963;
+    margin-bottom: 0.5rem;
+  }
+
+  .servicio-colaborador {
+    color: #666;
+    font-size: 1rem;
+  }
+
+  .rating-section {
+    background: rgba(25, 25, 99, 0.05);
+    border: 1px solid rgba(25, 25, 99, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .rating-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #191963;
+    margin-bottom: 1.5rem;
+  }
+
+  .star-rating {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    font-size: 2.5rem;
+    gap: 0.5rem;
+  }
+
+  .star-rating input {
+    display: none;
+  }
+
+  .star-rating label {
+    color: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .star-rating label:hover,
+  .star-rating label:hover ~ label,
+  .star-rating input:checked ~ label {
+    color: #ffd700;
+    transform: scale(1.1);
+  }
+
+  .star-rating label::before {
+    content: '\f005';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+  }
+
+  .rating-text {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #666;
+    min-height: 1.5rem;
+  }
+
+  .comment-section {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(25, 25, 99, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .comment-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #191963;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .form-control-modern {
+    border: 2px solid rgba(25, 25, 99, 0.1);
+    border-radius: 15px;
+    padding: 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .form-control-modern:focus {
+    border-color: #ff984d;
+    box-shadow: 0 0 0 0.2rem rgba(255, 152, 77, 0.25);
+    outline: none;
+  }
+
+  .submit-section {
+    text-align: center;
+  }
+
+  .btn-submit {
+    background: linear-gradient(135deg, #ff984d, #e67e22);
+    color: white;
+    border: none;
+    padding: 1.2rem 3rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(255, 152, 77, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .btn-submit:hover {
+    background: linear-gradient(135deg, #e67e22, #d35400);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(255, 152, 77, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .calificar-container {
+      padding: 1rem;
+    }
+
+    .calificar-card {
+      border-radius: 20px;
+    }
+
+    .calificar-header {
+      padding: 1.5rem;
+    }
+
+    .calificar-title {
+      font-size: 1.5rem;
+    }
+
+    .calificar-body {
+      padding: 1.5rem;
+    }
+
+    .star-rating {
+      font-size: 2rem;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="calificar-container">
+  <div class="calificar-card">
+    <div class="calificar-header">
+      <h1 class="calificar-title">
+        <i class="fas fa-star me-2"></i>
+        Calificar Servicio
+      </h1>
+      <p class="calificar-subtitle">Comparte tu experiencia con este servicio</p>
+    </div>
+
+    <div class="calificar-body">
+      <div class="servicio-info">
+        <div class="servicio-icon">
+          <i class="fas fa-briefcase"></i>
+        </div>
+        <div class="servicio-title">{{ servicio.titulo }}</div>
+        <div class="servicio-colaborador">
+          <i class="fas fa-user me-1"></i>
+          {{ servicio.colaborador_asignado.get_full_name }}
+        </div>
+      </div>
+
+      <form method="post">
+        {% csrf_token %}
+        
+        <div class="rating-section">
+          <div class="rating-label">
+            <i class="fas fa-star me-2"></i>
+            Calificación
+          </div>
+          
+          <div class="star-rating">
+            {% for i in "54321" %}
+            <input type="radio" name="puntuacion" value="{{ i }}" id="puntuacion{{ i }}" required>
+            <label for="puntuacion{{ i }}"></label>
+            {% endfor %}
+          </div>
+          
+          <div class="rating-text" id="rating-text">
+            Selecciona una calificación
+          </div>
+        </div>
+
+        <div class="comment-section">
+          <div class="comment-label">
+            <i class="fas fa-comment"></i>
+            Comentario (opcional)
+          </div>
+          <textarea 
+            name="comentario" 
+            class="form-control form-control-modern" 
+            rows="4" 
+            placeholder="Comparte tu experiencia con este servicio..."></textarea>
+        </div>
+
+        <div class="submit-section">
+          <button type="submit" class="btn-submit">
+            <i class="fas fa-paper-plane"></i>
+            Enviar Calificación
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Animación de entrada
+  document.addEventListener('DOMContentLoaded', function() {
+    const card = document.querySelector('.calificar-card');
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    
+    setTimeout(() => {
+      card.style.transition = 'all 0.6s ease';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }, 100);
+
+    // Texto dinámico para las estrellas
+    const ratingTexts = {
+      1: "Muy malo",
+      2: "Malo", 
+      3: "Regular",
+      4: "Bueno",
+      5: "Excelente"
+    };
+
+    const ratingText = document.getElementById('rating-text');
+    const starInputs = document.querySelectorAll('.star-rating input');
+
+    starInputs.forEach(input => {
+      input.addEventListener('change', function() {
+        const value = this.value;
+        ratingText.textContent = ratingTexts[value];
+        ratingText.style.color = '#ff984d';
+        ratingText.style.fontWeight = '600';
+      });
+    });
+
+    // Efecto hover en estrellas
+    const starLabels = document.querySelectorAll('.star-rating label');
+    
+    starLabels.forEach((label, index) => {
+      label.addEventListener('mouseenter', function() {
+        const stars = Array.from(starLabels).reverse();
+        const currentIndex = stars.indexOf(this);
+        
+        stars.forEach((star, i) => {
+          if (i <= currentIndex) {
+            star.style.color = '#ffd700';
+            star.style.transform = 'scale(1.1)';
+          } else {
+            star.style.color = '#ddd';
+            star.style.transform = 'scale(1)';
+          }
+        });
+      });
+    });
+
+    // Restaurar estado al salir del hover
+    document.querySelector('.star-rating').addEventListener('mouseleave', function() {
+      const checkedInput = document.querySelector('.star-rating input:checked');
+      if (checkedInput) {
+        const value = checkedInput.value;
+        ratingText.textContent = ratingTexts[value];
+        ratingText.style.color = '#ff984d';
+        ratingText.style.fontWeight = '600';
+      } else {
+        ratingText.textContent = 'Selecciona una calificación';
+        ratingText.style.color = '#666';
+        ratingText.style.fontWeight = '400';
+      }
+      
+      starLabels.forEach(star => {
+        star.style.color = '#ddd';
+        star.style.transform = 'scale(1)';
+      });
+    });
+  });
+</script>
+{% endblock %}

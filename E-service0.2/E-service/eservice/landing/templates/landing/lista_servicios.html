@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lista de Servicios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #2980b9;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Servicios</h1>
+
+    {% if servicios %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for servicio in servicios %}
+                <tr>
+                    <td>{{ servicio.id }}</td>
+                    <td>{{ servicio.titulo }}</td>
+                    <td>{{ servicio.descripcion|truncatechars:60|default:"-" }}</td>
+                    <td>
+                        <strong>Valor:</strong> {{ servicio.get_valor_formateado }}<br>
+                        <strong>Urgencia:</strong> {{ servicio.get_urgencia_icon }} {{ servicio.get_urgencia_display }}<br>
+                        <strong>Horario:</strong> {{ servicio.get_horario_icon }} {{ servicio.get_horario_preferido_display }}<br>
+                        <a href="{% url 'detalle_servicio' servicio.id %}">Ver</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay servicios disponibles.</p>
+    {% endif %}
+</body>
+</html>

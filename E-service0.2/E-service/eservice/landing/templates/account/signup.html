@@ -1,0 +1,417 @@
+{% extends "landing/base.html" %}
+{% load static %}
+
+{% block head %}
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<style>
+  body {
+    background: linear-gradient(135deg, #191963 0%, #2a2a7a 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  .signup-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .signup-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(25, 25, 99, 0.2);
+    padding: 3rem;
+    max-width: 600px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .signup-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .signup-header h2 {
+    color: #191963;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .signup-header p {
+    color: #666;
+    font-size: 1.1rem;
+  }
+
+  .signup-icon {
+    background: linear-gradient(135deg, #ff984d, #e67e22);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 8px 20px rgba(255, 152, 77, 0.3);
+  }
+
+  .signup-icon i {
+    font-size: 2rem;
+    color: white;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: #191963;
+    margin-bottom: 0.5rem;
+    display: block;
+    font-size: 1rem;
+  }
+
+  .form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    width: 100%;
+  }
+
+  .form-control:focus {
+    border-color: #ff984d;
+    box-shadow: 0 0 0 0.2rem rgba(255, 152, 77, 0.25);
+    background: white;
+    outline: none;
+  }
+
+  .input-group {
+    position: relative;
+  }
+
+  .input-group i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff984d;
+    z-index: 10;
+  }
+
+  .input-group .form-control {
+    padding-left: 3rem;
+  }
+
+  .btn-signup {
+    background: linear-gradient(135deg, #ff984d, #e67e22);
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 152, 77, 0.3);
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-signup:hover {
+    background: linear-gradient(135deg, #e67e22, #d35400);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 152, 77, 0.4);
+    color: white;
+  }
+
+  .login-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e9ecef;
+  }
+
+  .login-link a {
+    color: #ff984d;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .login-link a:hover {
+    color: #e67e22;
+  }
+
+  .alert-custom {
+    border-radius: 12px;
+    border: none;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .alert-danger {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+  }
+
+  .form-error {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(231, 76, 60, 0.1);
+    border-radius: 8px;
+    border-left: 3px solid #e74c3c;
+  }
+
+  .role-selector {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .role-option {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+  }
+
+  .role-option:hover {
+    border-color: #ff984d;
+    background: rgba(255, 152, 77, 0.1);
+  }
+
+  .role-option.selected {
+    border-color: #ff984d;
+    background: rgba(255, 152, 77, 0.1);
+  }
+
+  .role-option i {
+    font-size: 2rem;
+    color: #ff984d;
+    margin-bottom: 0.5rem;
+  }
+
+  .role-option h4 {
+    color: #191963;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .signup-card {
+      padding: 2rem;
+      margin: 1rem;
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .signup-header h2 {
+      font-size: 2rem;
+    }
+    
+    .role-selector {
+      flex-direction: column;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="signup-container">
+  <div class="signup-card">
+    <!-- Header -->
+    <div class="signup-header">
+      <div class="signup-icon">
+        <i class="fas fa-user-plus"></i>
+      </div>
+      <h2>Únete a E-Services</h2>
+      <p>Crea tu cuenta y comienza a ofrecer o contratar servicios</p>
+    </div>
+
+    <!-- Alertas de errores generales -->
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger alert-custom">
+        <i class="fas fa-exclamation-triangle"></i>
+        {% for error in form.non_field_errors %}
+          {{ error }}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <!-- Formulario -->
+    <form method="post" novalidate>
+      {% csrf_token %}
+
+      <!-- Selector de rol -->
+      <div class="form-group">
+        <label class="form-label">
+          <i class="fas fa-users"></i> Tipo de cuenta
+        </label>
+        <div class="role-selector">
+          <div class="role-option" onclick="selectRole('empresa')">
+            <i class="fas fa-building"></i>
+            <h4>Empresa</h4>
+          </div>
+          <div class="role-option" onclick="selectRole('colaborador')">
+            <i class="fas fa-user-tie"></i>
+            <h4>Colaborador</h4>
+          </div>
+        </div>
+        {{ form.rol }}
+        {% if form.rol.errors %}
+          <div class="form-error">{{ form.rol.errors }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Información personal -->
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">
+            <i class="fas fa-user"></i> Nombre
+          </label>
+          <div class="input-group">
+            <i class="fas fa-user"></i>
+            {{ form.first_name }}
+          </div>
+          {% if form.first_name.errors %}
+            <div class="form-error">{{ form.first_name.errors }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            <i class="fas fa-user"></i> Apellido
+          </label>
+          <div class="input-group">
+            <i class="fas fa-user"></i>
+            {{ form.last_name }}
+          </div>
+          {% if form.last_name.errors %}
+            <div class="form-error">{{ form.last_name.errors }}</div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Información de cuenta -->
+      <div class="form-group">
+        <label class="form-label">
+          <i class="fas fa-envelope"></i> Correo electrónico
+        </label>
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          {{ form.email }}
+        </div>
+        {% if form.email.errors %}
+          <div class="form-error">{{ form.email.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">
+          <i class="fas fa-at"></i> Nombre de usuario
+        </label>
+        <div class="input-group">
+          <i class="fas fa-at"></i>
+          {{ form.username }}
+        </div>
+        {% if form.username.errors %}
+          <div class="form-error">{{ form.username.errors }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Contraseñas -->
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">
+            <i class="fas fa-lock"></i> Contraseña
+          </label>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            {{ form.password1 }}
+          </div>
+          {% if form.password1.errors %}
+            <div class="form-error">{{ form.password1.errors }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            <i class="fas fa-lock"></i> Confirmar contraseña
+          </label>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            {{ form.password2 }}
+          </div>
+          {% if form.password2.errors %}
+            <div class="form-error">{{ form.password2.errors }}</div>
+          {% endif %}
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-signup">
+        <i class="fas fa-user-plus"></i> Crear cuenta
+      </button>
+    </form>
+
+    <!-- Enlace de login -->
+    <div class="login-link">
+      <p>¿Ya tienes una cuenta? 
+        <a href="{% url 'login' %}">
+          <i class="fas fa-sign-in-alt"></i> Inicia sesión aquí
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function selectRole(role) {
+    // Remover selección previa
+    document.querySelectorAll('.role-option').forEach(option => {
+      option.classList.remove('selected');
+    });
+    
+    // Seleccionar la opción clickeada
+    event.currentTarget.classList.add('selected');
+    
+    // Actualizar el campo hidden
+    document.getElementById('id_rol').value = role;
+  }
+  
+  // Seleccionar por defecto empresa
+  document.addEventListener('DOMContentLoaded', function() {
+    const empresaOption = document.querySelector('.role-option');
+    if (empresaOption) {
+      empresaOption.classList.add('selected');
+      document.getElementById('id_rol').value = 'empresa';
+    }
+  });
+</script>
+{% endblock %}

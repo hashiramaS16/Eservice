@@ -1,0 +1,59 @@
+/* base.css */
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #222;
+  background-color: #f7f9fb;
+  font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+a:hover {
+  color: #007BFF;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 700;
+  color: #0a1e3c;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+p {
+  font-family: 'Roboto', Arial, sans-serif;
+  color: #444;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+button, .btn {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #e3e6ee;
+}
+::-webkit-scrollbar-thumb {
+  background: #b3c0d1;
+  border-radius: 4px;
+}

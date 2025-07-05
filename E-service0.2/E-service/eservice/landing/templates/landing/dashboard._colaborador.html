@@ -1,0 +1,198 @@
+{% extends 'landing/base.html' %}
+
+{% block content %}
+<style>
+  h2 {
+    color: #2c3e50;
+    font-size: 28px;
+    margin: 30px 0 20px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+  }
+
+  li:hover {
+    background-color: #e8f0fe;
+  }
+
+  li strong {
+    font-size: 20px;
+    color: #2c3e50;
+  }
+
+  .detalle, .calificar {
+    margin-top: 10px;
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    background-color: #3498db;
+    transition: background-color 0.3s ease;
+  }
+
+  .calificar {
+    background-color: #27ae60;
+  }
+
+  .detalle:hover {
+    background-color: #2980b9;
+  }
+
+  .calificar:hover {
+    background-color: #1e8449;
+  }
+
+  p {
+    color: #555;
+    margin: 5px 0;
+  }
+
+  .estado {
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+  }
+
+  .estado.pendiente {
+    background-color: #f39c12;
+  }
+
+  .estado.en_progreso {
+    background-color: #2980b9;
+  }
+
+  .estado.completado {
+    background-color: #27ae60;
+  }
+
+  .estado.cancelado {
+    background-color: #e74c3c;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    li {
+      padding: 15px;
+    }
+
+    h2 {
+      font-size: 22px;
+    }
+
+    .detalle, .calificar {
+      width: 100%;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  }
+</style>
+
+<h2>Dashboard de Colaborador</h2>
+
+{% if servicios_asignados %}
+  <ul>
+    {% for servicio in servicios_asignados %}
+      <li>
+        <strong>{{ servicio.titulo }}</strong>
+        <p>{{ servicio.descripcion|truncatewords:25 }}</p>
+        <p><strong>Fecha del servicio:</strong> {{ servicio.fecha_servicio|date:"d M Y" }}</p>
+        <p><strong>Ubicación:</strong> {{ servicio.ubicacion }}</p>
+        <p><strong>Estado:</strong> 
+          <span class="estado {{ servicio.estado|lower }}">{{ servicio.estado|capfirst }}</span>
+        </p>
+
+        <a href="{% url 'detalle_servicio' servicio.id %}" class="detalle">Ver Detalles</a>
+
+        {% if servicio.estado == 'completado' %}
+          <a href="{% url 'calificar_servicio' servicio.id %}" class="calificar">Calificar Servicio</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No tienes tareas asignadas actualmente.</p>
+{% endif %}
+
+{% if calificaciones %}
+  <h2>Calificaciones Recibidas</h2>
+  <ul>
+    {% for calificacion in calificaciones %}
+      <li>
+        <p><strong>Servicio:</strong> {{ calificacion.servicio.titulo }}</p>
+        <p><strong>Puntuación:</strong> {{ calificacion.puntuacion }} ⭐</p>
+        <p><strong>Comentario:</strong> {{ calificacion.comentario }}</p>
+        <p><strong>Fecha:</strong> {{ calificacion.fecha|date:"d M Y" }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% if notificaciones %}
+  <h2>Notificaciones</h2>
+  <ul>
+    {% for notificacion in notificaciones %}
+      <li>
+        <p>{{ notificacion.mensaje }}</p>
+        {% if notificacion.url %}
+          <a href="{{ notificacion.url }}" class="detalle">Ver más</a>
+        {% endif %}
+        <p style="font-size: 12px; color: #999;">{{ notificacion.fecha|date:"d M Y H:i" }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No tienes nuevas notificaciones.</p>
+{% endif %}
+
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+<script>
+  function mostrarNotificacion(mensaje, url) {
+    Toastify({
+      text: mensaje,
+      duration: 6000,
+      destination: url || null,
+      newWindow: true,
+      close: true,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "#3498db",
+      stopOnFocus: true,
+    }).showToast();
+  }
+
+  function verificarNotificaciones() {
+    fetch("{% url 'ajax_notificaciones' %}")
+
+
+
+      .then(response => response.json())
+      .then(data => {
+        data.notificaciones.forEach(noti => {
+          mostrarNotificacion(noti.mensaje, noti.url);
+        });
+      })
+      .catch(error => console.error("Error al obtener notificaciones:", error));
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    verificarNotificaciones();
+    setInterval(verificarNotificaciones, 15000);
+  });
+</script>
+{% endblock %}

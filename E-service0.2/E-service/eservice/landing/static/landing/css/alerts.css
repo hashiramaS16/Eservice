@@ -1,0 +1,156 @@
+/* Estilos para las alertas del sistema */
+.alert-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  max-width: 400px;
+  pointer-events: none;
+}
+
+.alert {
+  margin-bottom: 10px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  animation: slideInRight 0.4s ease-out;
+  pointer-events: auto;
+  border: none;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 16px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.alert::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: rgba(255,255,255,0.3);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.alert.fade-out {
+  animation: slideOutRight 0.3s ease-in forwards;
+}
+
+/* Estilos específicos para cada tipo de alerta */
+.alert-success {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+}
+
+.alert-success::before {
+  background: rgba(255,255,255,0.4);
+}
+
+.alert-danger {
+  background: linear-gradient(135deg, #dc3545, #e74c3c);
+  color: white;
+}
+
+.alert-danger::before {
+  background: rgba(255,255,255,0.4);
+}
+
+.alert-warning {
+  background: linear-gradient(135deg, #ffc107, #f39c12);
+  color: #212529;
+}
+
+.alert-warning::before {
+  background: rgba(0,0,0,0.2);
+}
+
+.alert-info {
+  background: linear-gradient(135deg, #17a2b8, #3498db);
+  color: white;
+}
+
+.alert-info::before {
+  background: rgba(255,255,255,0.4);
+}
+
+/* Botón de cerrar */
+.alert .btn-close {
+  filter: invert(1);
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.alert .btn-close:hover {
+  opacity: 1;
+}
+
+.alert-warning .btn-close {
+  filter: none;
+}
+
+/* Iconos en las alertas */
+.alert i {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .alert-container {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+  
+  .alert {
+    font-size: 13px;
+    padding: 14px 16px;
+  }
+}
+
+/* Efectos hover */
+.alert:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+/* Animación de pulso para alertas importantes */
+.alert.alert-pulse {
+  animation: slideInRight 0.4s ease-out, pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  50% {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15), 0 0 0 10px rgba(255,255,255,0.1);
+  }
+  100% {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+} 

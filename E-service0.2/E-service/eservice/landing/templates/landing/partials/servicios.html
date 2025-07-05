@@ -1,0 +1,108 @@
+{% load static %}
+<style>
+.servicios-section {
+  background: #f7f9fb;
+  padding: 3rem 0 2rem 0;
+  text-align: center;
+}
+.servicios-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  color: #064663;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.servicios-section p {
+  color: #444;
+  font-size: 1.1rem;
+  margin-bottom: 2.2rem;
+}
+.servicios-slider {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.servicio-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(6,70,99,0.10);
+  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.3s;
+  position: relative;
+}
+.servicio-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(6,70,99,0.18);
+}
+.servicio-card img {
+  width: 100%;
+  max-width: 180px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+.servicio-card h3 {
+  font-size: 1.25rem;
+  color: #007BFF;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.servicio-card p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1.2rem;
+}
+.servicio-card .seleccionar-link {
+  background: linear-gradient(90deg, #064663 60%, #007BFF 100%);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.3s, transform 0.2s;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+.servicio-card .seleccionar-link:hover {
+  background: linear-gradient(90deg, #007BFF 60%, #064663 100%);
+  transform: scale(1.05);
+}
+@media (max-width: 900px) {
+  .servicios-slider {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+}
+</style>
+<div class="servicios-section">
+  <h2>Escoge tu Servicio</h2>
+  <p>En E-Services, ponemos a tu disposición una amplia variedad de servicios para el hogar...</p>
+  <div class="servicios-slider">
+    <!-- Jardinería -->
+    <div class="servicio-card">
+      <img src="{% static 'landing/assets/d90682abf9cca3cd309b465f1542c4b09024901c 1.png' %}" alt="Jardinería">
+      <h3>Jardinería</h3>
+      <p>Cuida y embellece tu jardín con expertos en jardinería.</p>
+      <a href="{% url 'login' %}" class="seleccionar-link">SELECCIONAR</a>
+    </div>
+    <!-- Limpieza -->
+    <div class="servicio-card">
+      <img src="{% static 'landing/assets/image (1).png' %}" alt="Limpieza">
+      <h3>Limpieza</h3>
+      <p>Disfruta de un hogar impecable con nuestro equipo de limpieza.</p>
+      <a href="{% url 'login' %}" class="seleccionar-link">SELECCIONAR</a>
+    </div>
+    <!-- Plomería -->
+    <div class="servicio-card">
+      <img src="{% static 'landing/assets/image (2).png' %}" alt="Plomería">
+      <h3>Plomería</h3>
+      <p>Soluciona tus problemas de plomería de forma rápida y segura.</p>
+      <a href="{% url 'login' %}" class="seleccionar-link">SELECCIONAR</a>
+    </div>
+  </div>
+</div>
